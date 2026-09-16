@@ -130,3 +130,4 @@ export function VocabTable({ lesson }: VocabTableProps) {
     </div>
   );
 }
+

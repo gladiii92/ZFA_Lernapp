@@ -20,3 +20,4 @@ export function MobileContainer({ children, className }: MobileContainerProps) {
     </main>
   );
 }
+

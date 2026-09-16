@@ -99,3 +99,4 @@ export function TheoryCard({ lesson }: TheoryCardProps) {
     </div>
   );
 }
+

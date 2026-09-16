@@ -94,3 +94,4 @@ export interface UserProgress {
   lastActiveDate?: string;
   soundEnabled: boolean;
 }
+

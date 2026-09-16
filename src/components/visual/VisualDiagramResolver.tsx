@@ -29,3 +29,4 @@ export function VisualDiagramResolver({ imageKey }: VisualDiagramResolverProps) 
       return null;
   }
 }
+

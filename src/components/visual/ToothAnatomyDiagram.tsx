@@ -312,3 +312,4 @@ export function ToothAnatomyDiagram({ initialPart }: { initialPart?: string }) {
     </div>
   );
 }
+

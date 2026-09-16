@@ -104,9 +104,25 @@ src/
 
 ---
 
-## 🚢 Deployment auf Vercel
+## 🌐 Hosting auf GitHub Pages
 
-Die App ist sofort für Vercel einsatzbereit:
+Die Web-App ist vollautomatisch für **GitHub Pages** eingerichtet!
+
+### Live-URL nach Aktivierung:
+👉 **[https://gladiii92.github.io/ZFA_Lernapp/](https://gladiii92.github.io/ZFA_Lernapp/)**
+
+### Einmalige Aktivierung in den GitHub-Repository-Einstellungen:
+1. Gehe in deinem GitHub-Repository auf **Settings** (oben rechts).
+2. Klicke in der linken Seitenleiste auf **Pages**.
+3. Wähle unter **Build and deployment -> Source** im Dropdown-Menü:
+   **GitHub Actions** (statt "Deploy from a branch").
+4. Fertig! Sobald ein Commit auf `main` gepusht wird (oder du den Workflow manuell startest), baut GitHub die App und schaltet sie automatisch live.
+
+---
+
+## 🚢 Alternatives Deployment auf Vercel
+
+Die App kann auch jederzeit auf Vercel gehostet werden:
 1. Repository auf GitHub pushen
 2. In Vercel importieren
-3. Vercel erkennt Next.js automatisch und führt `npm run build` aus
+3. Vercel erkennt Next.js automatisch und führt das Deployment durch.

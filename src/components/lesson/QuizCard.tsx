@@ -166,3 +166,4 @@ export function QuizCard({ lesson, onAnswerSelected, isAnswered }: QuizCardProps
     </div>
   );
 }
+
