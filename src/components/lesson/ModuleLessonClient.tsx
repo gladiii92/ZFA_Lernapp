@@ -172,3 +172,4 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
     </MobileContainer>
   );
 }
+
