@@ -3,68 +3,242 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 15, 23, 42;
-  --background-rgb: 248, 250, 252;
+  --foreground-rgb: 241, 245, 249;
+  --background-rgb: 2, 6, 23;
+  --raised-slate: 15, 23, 42;
+  --card-slate: 30, 41, 59;
+  --border-slate: 51, 65, 85;
+  --accent-sky: 56, 189, 248;
+  --accent-emerald: 52, 211, 153;
+  --accent-violet: 167, 139, 250;
+  --accent-amber: 251, 191, 36;
+  --accent-rose: 251, 113, 133;
+
+  /* Safe Area Insets für iOS & Android */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+html {
+  height: 100%;
+  color-scheme: dark;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   user-select: none;
+  overflow-x: hidden;
 }
 
-/* Duolingo-style 3D tactile button effects */
-.btn-3d-green {
-  background-color: #22c55e;
-  border-bottom: 4px solid #15803d;
-  transition: all 0.08s ease-in-out;
+/* Textauswahl für Lerninhalte und Leseerklärungen freigeben */
+.selectable-text,
+p,
+article,
+blockquote,
+span,
+h1,
+h2,
+h3,
+h4 {
+  user-select: text;
 }
-.btn-3d-green:active {
+
+/* Basis Touch-Target Hilfsklasse (mindestens 48px) */
+.touch-target {
+  min-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pt-safe {
+  padding-top: max(0.75rem, var(--sat));
+}
+
+.pb-safe {
+  padding-bottom: max(1rem, var(--sab));
+}
+
+.pl-safe {
+  padding-left: max(1rem, var(--sal));
+}
+
+.pr-safe {
+  padding-right: max(1rem, var(--sar));
+}
+
+/* App-Header Styling */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  min-height: 56px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+  display: flex;
+  align-items: center;
+}
+
+/* Haptische 3D-Touch-Buttons (mindestens 48px Höhe für mobile Ergonomie) */
+.btn-3d-green {
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  background-color: #10b981;
+  border-bottom: 4px solid #047857;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.08s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btn-3d-green:active:not(:disabled) {
   transform: translateY(3px);
   border-bottom-width: 1px;
 }
 
 .btn-3d-blue {
-  background-color: #3b82f6;
-  border-bottom: 4px solid #1d4ed8;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  background-color: #0284c7;
+  border-bottom: 4px solid #0369a1;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.75rem;
   transition: all 0.08s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.btn-3d-blue:active {
+.btn-3d-blue:active:not(:disabled) {
   transform: translateY(3px);
   border-bottom-width: 1px;
 }
 
 .btn-3d-white {
-  background-color: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-bottom: 4px solid #cbd5e1;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-bottom: 4px solid #0f172a;
+  color: #f8fafc;
+  font-weight: 600;
+  border-radius: 0.75rem;
   transition: all 0.08s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.btn-3d-white:active {
+.btn-3d-white:active:not(:disabled) {
   transform: translateY(2px);
   border-bottom-width: 2px;
 }
 
-.btn-3d-red {
-  background-color: #ef4444;
-  border-bottom: 4px solid #b91c1c;
+.btn-3d-amber {
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  background-color: #d97706;
+  border-bottom: 4px solid #b45309;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.75rem;
   transition: all 0.08s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.btn-3d-red:active {
+.btn-3d-amber:active:not(:disabled) {
   transform: translateY(3px);
   border-bottom-width: 1px;
 }
 
-/* Custom scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.btn-3d-slate {
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  background-color: #334155;
+  border: 1px solid #475569;
+  border-bottom: 4px solid #1e293b;
+  color: #f8fafc;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.08s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
-  border-radius: 9999px;
+.btn-3d-slate:active:not(:disabled) {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
 }
 
+/* Bottom-Sheet Animationen & Transitions */
+@keyframes bottomSheetSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-bottom-sheet {
+  animation: bottomSheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInFast {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInFast 0.2s ease-out forwards;
+}
+
+@keyframes pulseHotspot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.45;
+  }
+}
+
+.animate-hotspot-pulse {
+  animation: pulseHotspot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Scrollbar für horizontale Auswahllisten */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

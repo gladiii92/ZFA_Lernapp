@@ -1,5 +1,16 @@
 export type LessonType = 'theory' | 'vocabulary' | 'quiz' | 'matching';
 
+export interface GraphicHotspot {
+  id: string;
+  x: number; // Prozentwert horizontal (0-100)
+  y: number; // Prozentwert vertikal (0-100)
+  titleDe: string;
+  titleFr: string;
+  descriptionDe: string;
+  descriptionFr: string;
+  latin?: string;
+}
+
 export interface TheoryLesson {
   id: string;
   type: 'theory';
@@ -9,7 +20,8 @@ export interface TheoryLesson {
   contentFr: string;
   subContentDe?: string;
   subContentFr?: string;
-  imageKey?: 'tooth-anatomy' | 'tooth-substances' | 'tooth-types' | 'fdi-scheme' | 'hygiene-steps';
+  imageKey?: 'tooth-anatomy' | 'tooth-substances' | 'tooth-types' | 'fdi-scheme' | 'hygiene-steps' | 'periodontium';
+  hotspots?: GraphicHotspot[];
   keyPoints?: { de: string; fr: string }[];
 }
 
@@ -28,6 +40,7 @@ export interface VocabularyLesson {
   titleFr?: string;
   instructionDe?: string;
   instructionFr?: string;
+  imageKey?: 'tooth-anatomy' | 'tooth-substances' | 'tooth-types' | 'fdi-scheme' | 'hygiene-steps' | 'periodontium';
   vocab: VocabItem[];
 }
 
@@ -44,7 +57,8 @@ export interface QuizLesson {
   type: 'quiz';
   questionDe: string;
   questionFr: string;
-  imageKey?: 'tooth-anatomy' | 'tooth-substances' | 'tooth-types' | 'fdi-scheme' | 'hygiene-steps';
+  imageKey?: 'tooth-anatomy' | 'tooth-substances' | 'tooth-types' | 'fdi-scheme' | 'hygiene-steps' | 'periodontium';
+  hotspots?: GraphicHotspot[];
   options: QuizOption[];
   tipDe?: string;
   tipFr?: string;
@@ -62,6 +76,7 @@ export interface MatchingLesson {
   type: 'matching';
   instructionDe: string;
   instructionFr: string;
+  imageKey?: 'tooth-anatomy' | 'tooth-substances' | 'tooth-types' | 'fdi-scheme' | 'hygiene-steps' | 'periodontium';
   pairs: MatchingPair[];
 }
 
@@ -94,4 +109,3 @@ export interface UserProgress {
   lastActiveDate?: string;
   soundEnabled: boolean;
 }
-

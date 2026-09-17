@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 650" width="100%" height="100%" aria-labelledby="toothTypesTitle toothTypesDesc">
+  <title id="toothTypesTitle">Die 4 Zahntypen des menschlichen Gebisses</title>
+  <desc id="toothTypesDesc">Eckige, kubisch-didaktische Vektordarstellung der 4 Zahngruppen: Schneidezähne, Eckzähne, Prämolaren und Molaren mit Wurzelanzahl, Höckerformen und Funktionen.</desc>
+  <defs>
+    <linearGradient id="typeEnamel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="typeRoot" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="100%" stop-color="#EAB308"/>
+    </linearGradient>
+    <style>
+      .col-card { fill: #1E293B; stroke: #334155; stroke-width: 1.5; rx: 8; cursor: pointer; transition: all 0.2s; }
+      .col-card:hover { stroke: #38BDF8; }
+      .type-title { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #F8FAFC; text-anchor: middle; }
+      .type-latin { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; fill: #94A3B8; text-anchor: middle; }
+      .type-badge { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; text-anchor: middle; }
+      .spec-label { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #94A3B8; }
+      .spec-val { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #F1F5F9; }
+      .tooth-outline { stroke: #334155; stroke-width: 1.5; stroke-linejoin: miter; }
+    </style>
+  </defs>
+
+  <!-- Container -->
+  <rect width="100%" height="100%" fill="#0B1120" rx="12"/>
+  <rect x="10" y="10" width="780" height="630" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" rx="10"/>
+
+  <text x="400" y="42" text-anchor="middle" font-family="system-ui" font-size="20px" font-weight="700" fill="#F8FAFC">Die 4 Zahntypen im Gebiss</text>
+  <text x="400" y="64" text-anchor="middle" font-family="system-ui" font-size="13px" fill="#94A3B8">Morphologische Unterscheidung nach eckiger Kronenform, Wurzelanzahl &amp; Kauffunktion</text>
+
+  <!-- 1. Schneidezahn (Incisivus) -->
+  <g id="hotspot-incisor" transform="translate(25, 85)">
+    <rect width="170" height="475" class="col-card" stroke="#38BDF8"/>
+    <text x="85" y="30" class="type-title">Schneidezahn</text>
+    <text x="85" y="48" class="type-latin">Dens incisivus (I)</text>
+    
+    <rect x="35" y="60" width="100" height="22" fill="#0C4A6E" rx="4"/>
+    <text x="85" y="75" class="type-badge" fill="#38BDF8">Zähne 1 &amp; 2 (8x)</text>
+
+    <!-- Eckige Zeichnung: Meißelförmig mit gerader Inzisalkante & 1 Wurzel -->
+    <g transform="translate(35, 100)">
+      <!-- 1 gerade Wurzel -->
+      <polygon points="35,160 50,75 65,160" fill="url(#typeRoot)" stroke="#B45309" stroke-width="1.2" transform="rotate(180 50 115)"/>
+      <!-- Eckige meißelförmige Krone -->
+      <polygon points="20,110 80,110 75,170 25,170" fill="url(#typeEnamel)" stroke="#94A3B8" stroke-width="1.5"/>
+      <!-- Gerade Schneidekante (Inzisalkante) -->
+      <line x1="20" y1="170" x2="80" y2="170" stroke="#38BDF8" stroke-width="3"/>
+      <text x="50" y="190" font-family="system-ui" font-size="10px" font-weight="700" fill="#38BDF8" text-anchor="middle">Inzisalkante</text>
+    </g>
+
+    <!-- Spezifikationen -->
+    <g transform="translate(15, 310)">
+      <text x="0" y="0" class="spec-label">Kronenform:</text>
+      <text x="0" y="16" class="spec-val">Eckig meißelförmig</text>
+      <text x="0" y="40" class="spec-label">Wurzeln:</text>
+      <text x="0" y="56" class="spec-val">1 gerade Wurzel</text>
+      <text x="0" y="80" class="spec-label">Hauptfunktion:</text>
+      <text x="0" y="96" class="spec-val">Abbeißen der Nahrung</text>
+      <text x="0" y="120" class="spec-label">FDI-Nummern:</text>
+      <text x="0" y="136" class="spec-val">11, 12, 21, 22, 31, 32, 41, 42</text>
+    </g>
+  </g>
+
+  <!-- 2. Eckzahn (Caninus) -->
+  <g id="hotspot-canine" transform="translate(215, 85)">
+    <rect width="170" height="475" class="col-card" stroke="#34D399"/>
+    <text x="85" y="30" class="type-title">Eckzahn</text>
+    <text x="85" y="48" class="type-latin">Dens caninus (C)</text>
+
+    <rect x="35" y="60" width="100" height="22" fill="#064E3B" rx="4"/>
+    <text x="85" y="75" class="type-badge" fill="#34D399">Zahn 3 (4x)</text>
+
+    <!-- Eckige Zeichnung: Lanzettförmig mit ausgeprägter Spitze & massiver langer Wurzel -->
+    <g transform="translate(35, 95)">
+      <!-- 1 sehr lange, kräftige Wurzel -->
+      <polygon points="32,185 50,65 68,185" fill="url(#typeRoot)" stroke="#B45309" stroke-width="1.2" transform="rotate(180 50 125)"/>
+      <!-- Eckige Krone mit Kauspitze -->
+      <polygon points="25,120 75,120 80,150 50,180 20,150" fill="url(#typeEnamel)" stroke="#94A3B8" stroke-width="1.5"/>
+      <circle cx="50" cy="180" r="3" fill="#34D399"/>
+      <text x="50" y="198" font-family="system-ui" font-size="10px" font-weight="700" fill="#34D399" text-anchor="middle">Eckzahnspitze</text>
+    </g>
+
+    <!-- Spezifikationen -->
+    <g transform="translate(15, 310)">
+      <text x="0" y="0" class="spec-label">Kronenform:</text>
+      <text x="0" y="16" class="spec-val">Eckig lanzettförmig</text>
+      <text x="0" y="40" class="spec-label">Wurzeln:</text>
+      <text x="0" y="56" class="spec-val">1 (Längste Wurzel!)</text>
+      <text x="0" y="80" class="spec-label">Hauptfunktion:</text>
+      <text x="0" y="96" class="spec-val">Festhalten &amp; Abreißen</text>
+      <text x="0" y="120" class="spec-label">FDI-Nummern:</text>
+      <text x="0" y="136" class="spec-val">13, 23, 33, 43</text>
+    </g>
+  </g>
+
+  <!-- 3. Prämolar (Vormahlzahn) -->
+  <g id="hotspot-premolar" transform="translate(405, 85)">
+    <rect width="170" height="475" class="col-card" stroke="#FBBF24"/>
+    <text x="85" y="30" class="type-title">Vormahlzahn</text>
+    <text x="85" y="48" class="type-latin">Dens premolaris (P)</text>
+
+    <rect x="35" y="60" width="100" height="22" fill="#451A03" rx="4"/>
+    <text x="85" y="75" class="type-badge" fill="#FBBF24">Zähne 4 &amp; 5 (8x)</text>
+
+    <!-- Eckige Zeichnung: Kubisch mit 2 Höckern (Bikuspis) & 1-2 Wurzeln -->
+    <g transform="translate(35, 100)">
+      <!-- 2 Wurzeln (14 typisch 2-wurzelig) -->
+      <polygon points="25,160 38,75 48,160" fill="url(#typeRoot)" stroke="#B45309" stroke-width="1.2" transform="rotate(180 38 115)"/>
+      <polygon points="52,160 62,75 75,160" fill="url(#typeRoot)" stroke="#B45309" stroke-width="1.2" transform="rotate(180 62 115)"/>
+      <!-- Kubische Krone mit 2 Höckern und Fissur -->
+      <polygon points="18,115 82,115 85,145 75,170 50,160 25,170 15,145" fill="url(#typeEnamel)" stroke="#94A3B8" stroke-width="1.5"/>
+      <line x1="50" y1="145" x2="50" y2="160" stroke="#D97706" stroke-width="2"/>
+      <text x="50" y="188" font-family="system-ui" font-size="10px" font-weight="700" fill="#FBBF24" text-anchor="middle">2 Höcker (Bikuspis)</text>
+    </g>
+
+    <!-- Spezifikationen -->
+    <g transform="translate(15, 310)">
+      <text x="0" y="0" class="spec-label">Kronenform:</text>
+      <text x="0" y="16" class="spec-val">Kubisch mit 2 Höckern</text>
+      <text x="0" y="40" class="spec-label">Wurzeln:</text>
+      <text x="0" y="56" class="spec-val">1–2 Wurzeln (14 oft 2)</text>
+      <text x="0" y="80" class="spec-label">Hauptfunktion:</text>
+      <text x="0" y="96" class="spec-val">Vorzerkleinern</text>
+      <text x="0" y="120" class="spec-label">FDI-Nummern:</text>
+      <text x="0" y="136" class="spec-val">14, 15, 24, 25, 34, 35, 44, 45</text>
+    </g>
+  </g>
+
+  <!-- 4. Molar (Mahlzahn) -->
+  <g id="hotspot-molar" transform="translate(595, 85)">
+    <rect width="170" height="475" class="col-card" stroke="#A78BFA"/>
+    <text x="85" y="30" class="type-title">Mahlzahn</text>
+    <text x="85" y="48" class="type-latin">Dens molaris (M)</text>
+
+    <rect x="35" y="60" width="100" height="22" fill="#2E1065" rx="4"/>
+    <text x="85" y="75" class="type-badge" fill="#A78BFA">Zähne 6, 7 &amp; 8 (12x)</text>
+
+    <!-- Eckige Zeichnung: Große kubische Krone mit 4-5 Höckern & Mehrfachwurzeln (3 im OK, 2 im UK) -->
+    <g transform="translate(35, 100)">
+      <!-- 3 Wurzeln im OK -->
+      <polygon points="18,160 28,75 38,160" fill="url(#typeRoot)" stroke="#B45309" stroke-width="1.2" transform="rotate(180 28 115)"/>
+      <polygon points="42,160 50,70 58,160" fill="url(#typeRoot)" stroke="#B45309" stroke-width="1.2" transform="rotate(180 50 115)"/>
+      <polygon points="62,160 72,75 82,160" fill="url(#typeRoot)" stroke="#B45309" stroke-width="1.2" transform="rotate(180 72 115)"/>
+      <!-- Große kubische Krone mit Höckerrelief -->
+      <polygon points="12,115 88,115 92,145 80,172 65,162 50,172 35,162 20,172 8,145" fill="url(#typeEnamel)" stroke="#94A3B8" stroke-width="1.5"/>
+      <!-- Fissurenrelief -->
+      <path d="M 35,145 L 50,150 L 65,145 M 50,130 L 50,150" stroke="#7C3AED" stroke-width="1.8" fill="none"/>
+      <text x="50" y="188" font-family="system-ui" font-size="10px" font-weight="700" fill="#A78BFA" text-anchor="middle">4–5 Höcker (Kaufläche)</text>
+    </g>
+
+    <!-- Spezifikationen -->
+    <g transform="translate(15, 310)">
+      <text x="0" y="0" class="spec-label">Kronenform:</text>
+      <text x="0" y="16" class="spec-val">Groß kubisch (4–5 Höcker)</text>
+      <text x="0" y="40" class="spec-label">Wurzeln:</text>
+      <text x="0" y="56" class="spec-val">3 im OK | 2 im UK</text>
+      <text x="0" y="80" class="spec-label">Hauptfunktion:</text>
+      <text x="0" y="96" class="spec-val">Zermahlen der Nahrung</text>
+      <text x="0" y="120" class="spec-label">FDI-Nummern:</text>
+      <text x="0" y="136" class="spec-val">16–18, 26–28, 36–38, 46–48</text>
+    </g>
+  </g>
+
+  <!-- Footer-Info -->
+  <rect x="25" y="575" width="740" height="38" fill="#1E293B" stroke="#334155" rx="6"/>
+  <text x="40" y="599" font-family="system-ui, -apple-system, sans-serif" font-size="12px" fill="#FBBF24" font-weight="700">ZFA-Prüfungstipp:</text>
+  <text x="165" y="599" font-family="system-ui, -apple-system, sans-serif" font-size="12px" fill="#F1F5F9">OK-Molaren besitzen stets 3 Wurzeln (2 bukkal, 1 palatinal), UK-Molaren 2 kräftige Wurzeln (1 mesial, 1 distal)!</text>
+</svg>

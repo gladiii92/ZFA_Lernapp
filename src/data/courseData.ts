@@ -5,146 +5,194 @@ export const courseData: CourseData = {
     {
       id: "modul-1",
       order: 1,
-      titleDe: "Aufbau des Zahnes",
-      titleFr: "Structure de la dent",
-      subtitleDe: "Krone, Hals, Wurzel & Gewebeschichten",
-      subtitleFr: "Couronne, collet, racine & tissus",
-      descriptionDe: "Lerne die anatomischen Abschnitte des Zahnes und ihre lateinischen Fachbegriffe kennen.",
-      descriptionFr: "Apprenez les parties anatomiques de la dent et leurs termes en latin médical.",
+      titleDe: "Aufbau des Zahnes & Parodontium",
+      titleFr: "Structure de la dent & Parodonte",
+      subtitleDe: "Krone, Wurzel & die 4 Halteapparat-Gewebe",
+      subtitleFr: "Couronne, racine & les 4 tissus de soutien",
+      descriptionDe: "Lerne die anatomischen Abschnitte des Zahnes, seine Gewebeschichten und das Parodontium kennen.",
+      descriptionFr: "Apprenez l'anatomie de la dent, ses couches tissulaires et l'appareil de soutien parodontal.",
       badge: "🦷",
       color: "emerald",
-      xpReward: 100,
+      xpReward: 120,
       lessons: [
         {
           id: "m1-l1",
           type: "theory",
-          titleDe: "Die drei Hauptteile des Zahnes",
-          titleFr: "Les trois parties principales de la dent",
-          contentDe: "Ein Zahn besteht aus drei Hauptabschnitten: Die Zahnkrone ist der sichtbare Teil im Mund. Der Zahnhals wird vom Zahnfleisch umschlossen. Die Zahnwurzel steckt fest im Kieferknochen.",
-          contentFr: "Une dent se compose de trois parties principales : la couronne est la partie visible dans la bouche. Le collet est entouré par la gencive. La racine est solidement ancrée dans l'os de la mâchoire.",
+          titleDe: "Die drei Hauptabschnitte & Zahnhartsubstanzen",
+          titleFr: "Les trois parties principales & tissus dentaires",
+          contentDe: "Ein menschlicher Zahn gliedert sich in drei Hauptzonen: Die Zahnkrone (Corona dentis) ragt sichtbar in die Mundhöhle. Der Zahnhals (Collum dentis) bildet den empfindlichen Übergangsbereich am Zahnfleischsaum. Die Zahnwurzel (Radix dentis) verankert den Zahn fest im Kieferknochen. Erkunde die interaktiven Hotspots in der eckigen anatomischen Schnittgrafik.",
+          contentFr: "Une dent humaine comprend trois zones principales : la couronne (Corona dentis), le collet (Collum dentis) et la racine (Radix dentis) ancrée dans l'os maxillaire. Explorez les points interactifs du schéma anatomique.",
           imageKey: "tooth-anatomy",
+          hotspots: [
+            {
+              id: "hs-enamel",
+              x: 50,
+              y: 18,
+              titleDe: "Zahnschmelz",
+              titleFr: "Émail dentaire",
+              latin: "Enamelum",
+              descriptionDe: "Härteste Substanz des Körpers (ca. 96 % Hydroxylapatit / anorganisch). Bildet die prismatische Schutzschicht der Krone gegen Abrieb und Säuren.",
+              descriptionFr: "Substance la plus dure de l'organisme (env. 96 % inorganique). Protège la couronne contre l'usure mécanique et les attaques acides."
+            },
+            {
+              id: "hs-dentin",
+              x: 50,
+              y: 35,
+              titleDe: "Zahnbein",
+              titleFr: "Dentine",
+              latin: "Dentinum",
+              descriptionDe: "Hauptmasse des Zahnes (ca. 70 % anorganisch, 20 % organisch, 10 % Wasser). Durchzogen von Dentinkanälchen mit Tomes-Fasern zur Reizweiterleitung.",
+              descriptionFr: "Masse principale de la dent (env. 70 % inorganique). Traversée de tubuli dentinaires transmettant les sensations thermiques et douloureuses."
+            },
+            {
+              id: "hs-pulp",
+              x: 50,
+              y: 46,
+              titleDe: "Zahnmark / Pulpa",
+              titleFr: "Pulpe dentaire",
+              latin: "Pulpa dentis",
+              descriptionDe: "Lockeres Bindegewebe mit Blutkapillaren, Lymphgefäßen und sensiblen Nervenfasern. Versorgt das Dentin und reagiert auf Entzündungen.",
+              descriptionFr: "Tissu conjonctif lâche richement vascularisé et innervé, situé au cœur de la chambre pulpaire."
+            },
+            {
+              id: "hs-cementum",
+              x: 28,
+              y: 65,
+              titleDe: "Wurzelzement",
+              titleFr: "Cément radiculaire",
+              latin: "Cementum",
+              descriptionDe: "Knochenähnliche Hartsubstanz (ca. 65 % anorganisch), die die Wurzel umgibt und die Sharpey-Fasern des Zahnhalteapparats verankert.",
+              descriptionFr: "Substance dure analogue à l'os recouvrant la racine et assurant l'ancrage des fibres desmodontales."
+            },
+            {
+              id: "hs-root-canal",
+              x: 50,
+              y: 72,
+              titleDe: "Wurzelkanal",
+              titleFr: "Canal radiculaire",
+              latin: "Canalis radicis dentis",
+              descriptionDe: "Kanal im Wurzelinneren zur Aufnahme des neurovaskulären Leitungsbündels von der Wurzelspitze zur Pulpenkammer.",
+              descriptionFr: "Conduit traversant la racine pour acheminer les vaisseaux et nerfs vers la pulpe dentaire."
+            },
+            {
+              id: "hs-apex",
+              x: 50,
+              y: 92,
+              titleDe: "Wurzelspitze / Foramen apicale",
+              titleFr: "Apex radiculaire / Foramen apical",
+              latin: "Apex dentis / Foramen apicale",
+              descriptionDe: "Austrittsöffnung des Nerven- und Gefäßbündels an der Wurzelspitze in das umgebende Kiefergewebe.",
+              descriptionFr: "Orifice terminal de la racine dentaire par lequel pénètrent les artères, veines et fibres nerveuses."
+            }
+          ],
           keyPoints: [
-            { de: "Zahnkrone: Im Mund sichtbar", fr: "Couronne : visible dans la bouche" },
-            { de: "Zahnhals: Übergangszone am Zahnfleisch", fr: "Collet : zone de transition au niveau de la gencive" },
-            { de: "Zahnwurzel: Verankert im Knochen", fr: "Racine : ancrée dans l'os alvéolaire" }
+            { de: "Zahnkrone (Corona dentis): Im Mund sichtbar, mit Schmelz überzogen", fr: "Couronne (Corona dentis) : partie visible recouverte d'émail" },
+            { de: "Zahnhals (Collum dentis): Schmelz-Zement-Grenze am Zahnfleischrand", fr: "Collet (Collum dentis) : jonction émail-cément au niveau gingival" },
+            { de: "Zahnwurzel (Radix dentis): Verankerung im Alveolarknochen via Zement", fr: "Racine (Radix dentis) : ancrage osseux recouvert de cément" }
           ]
         },
         {
           id: "m1-l2",
-          type: "vocabulary",
-          titleDe: "Fachwörter: Zahnaufbau",
-          titleFr: "Vocabulaire : Structure dentaire",
-          instructionDe: "Präge dir diese wichtigen lateinischen Begriffe für die Praxis ein.",
-          instructionFr: "Mémorisez ces termes latins indispensables au cabinet dentaire.",
-          vocab: [
+          type: "theory",
+          titleDe: "Der Zahnhalteapparat (Parodontium)",
+          titleFr: "Le parodonte (Appareil de soutien)",
+          contentDe: "Das Parodontium (Zahnhalteapparat) sorgt für die federnde Verankerung des Zahnes im Kieferknochen. Es besteht aus genau 4 Gewebestrukturen: Freies und befestigtes Zahnfleisch (Gingiva), Wurzelzement (Cementum), Wurzelhaut mit Sharpey-Fasern (Desmodont / Periodontium) und Alveolarknochen (Os alveolare). Klicke auf die Hotspots der Grafik für mikroskopische Details.",
+          contentFr: "Le parodonte assure la suspension élastique de la dent dans l'alvéole. Il comprend 4 structures : la gencive (Gingiva), le cément (Cementum), le desmodonte avec fibres de Sharpey et l'os alvéolaire (Os alveolare).",
+          imageKey: "periodontium",
+          hotspots: [
             {
-              de: "Die Zahnkrone",
-              latin: "Corona dentis",
-              fr: "La couronne dentaire",
-              noteDe: "Klinische Krone = sichtbarer Teil",
-              noteFr: "Couronne clinique = partie visible"
-            },
-            {
-              de: "Der Zahnhals",
-              latin: "Collum dentis",
-              fr: "Le collet dentaire",
-              noteDe: "Verbindung zwischen Krone und Wurzel",
-              noteFr: "Jonction entre couronne et racine"
-            },
-            {
-              de: "Die Zahnwurzel",
-              latin: "Radix dentis",
-              fr: "La racine dentaire",
-              noteDe: "Ein- oder mehrwurzelig",
-              noteFr: "À racine unique ou multiple"
-            },
-            {
-              de: "Die Wurzelspitze",
-              latin: "Apex dentis",
-              fr: "L'apex radiculaire",
-              noteDe: "Hier treten Nerven und Gefäße ein",
-              noteFr: "Point d'entrée des nerfs et vaisseaux"
-            },
-            {
-              de: "Das Zahnfleisch",
+              id: "hs-gingiva",
+              x: 25,
+              y: 22,
+              titleDe: "Zahnfleisch",
+              titleFr: "Gencive",
               latin: "Gingiva",
-              fr: "La gencive",
-              noteDe: "Schützt den Kieferknochen",
-              noteFr: "Protège l'os de la mâchoire"
+              descriptionDe: "Mundschleimhaut, die den Zahnhals kragenförmig umschließt und das darunterliegende Parodontium vor Bakterieneindringen schützt.",
+              descriptionFr: "Muqueuse buccale kératinisée entourant le collet dentaire pour former une barrière étanche contre les bactéries."
+            },
+            {
+              id: "hs-desmodont",
+              x: 45,
+              y: 48,
+              titleDe: "Wurzelhaut / Sharpey-Fasern",
+              titleFr: "Desmodonte / Ligament parodontal",
+              latin: "Desmodontium / Ligamentum periodontale",
+              descriptionDe: "Kollagene Faserbündel (Sharpey-Fasern), die den Zahn elastisch und stoßdämpfend in der Knochenalveole aufhängen und Kaudruck abfedern.",
+              descriptionFr: "Réseau de fibres de collagène (fibres de Sharpey) reliant le cément à l'os alvéolaire pour amortir les forces occlusales."
+            },
+            {
+              id: "hs-cementum-paro",
+              x: 65,
+              y: 40,
+              titleDe: "Wurzelzement",
+              titleFr: "Cément radiculaire",
+              latin: "Cementum",
+              descriptionDe: "Dünne mineralisierte Schicht auf der Wurzeloberfläche, in der die parodontalen Fasern fest inserieren.",
+              descriptionFr: "Couche minéralisée recouvrant la dentine radiculaire permettant l'insertion solide des fibres ligamentaires."
+            },
+            {
+              id: "hs-bone",
+              x: 75,
+              y: 75,
+              titleDe: "Alveolarknochen",
+              titleFr: "Os alvéolaire",
+              latin: "Os alveolare / Processus alveolaris",
+              descriptionDe: "Teil des Ober- bzw. Unterkiefers, der die knöchernen Zahnfächer (Alveolen) bildet und den Kaudruck aufnimmt.",
+              descriptionFr: "Partie osseuse des maxillaires formant les alvéoles qui soutiennent les racines dentaires."
             }
+          ],
+          keyPoints: [
+            { de: "4 Komponenten: Gingiva, Wurzelzement, Desmodont & Alveolarknochen", fr: "4 composants : gencive, cément, desmodonte & os alvéolaire" },
+            { de: "Sharpey-Fasern fangen Kaukräfte elastisch wie Stoßdämpfer ab", fr: "Les fibres de Sharpey amortissent les chocs masticatoires" },
+            { de: "Schutzfunktion: Die Gingiva dichtet den Zahnhals keimdicht ab", fr: "La gencive protège le parodonte profond contre les agents pathogènes" }
           ]
         },
         {
           id: "m1-l3",
-          type: "quiz",
-          questionDe: "Wie heißt der sichtbare Teil des Zahnes im Mund?",
-          questionFr: "Comment s'appelle la partie visible de la dent dans la bouche ?",
+          type: "vocabulary",
+          titleDe: "Fachbegriffe: Zahnaufbau & Parodontium",
+          titleFr: "Vocabulaire : Anatomie & Parodonte",
+          instructionDe: "Präge dir diese lateinischen Grundbegriffe für deinen Praxisalltag und die Assistenz ein.",
+          instructionFr: "Mémorisez ces termes latins indispensables au cabinet dentaire.",
           imageKey: "tooth-anatomy",
-          options: [
-            {
-              textDe: "Zahnwurzel (Radix)",
-              textFr: "Racine (Radix)",
-              isCorrect: false,
-              explanationDe: "Die Wurzel steckt unsichtbar im Knochen.",
-              explanationFr: "La racine est cachée dans l'os."
-            },
-            {
-              textDe: "Zahnkrone (Corona)",
-              textFr: "Couronne (Corona)",
-              isCorrect: true,
-              explanationDe: "Richtig! Die Krone ist der weiße, sichtbare Teil.",
-              explanationFr: "Correct ! La couronne est la partie blanche visible."
-            },
-            {
-              textDe: "Zahnhals (Collum)",
-              textFr: "Collet (Collum)",
-              isCorrect: false,
-              explanationDe: "Der Zahnhals ist der Übergang am Zahnfleischsaum.",
-              explanationFr: "Le collet est la transition au niveau de la gencive."
-            }
-          ],
-          tipDe: "Denke an das lateinische Wort 'Corona' wie eine königliche Krone.",
-          tipFr: "Pensez au mot 'Couronne'."
-        },
-        {
-          id: "m1-l4",
-          type: "matching",
-          instructionDe: "Ordne die deutschen Begriffe den passenden lateinischen Fachwörtern zu.",
-          instructionFr: "Associez les termes allemands aux termes latins correspondants.",
-          pairs: [
-            { id: "p1", left: "Zahnkrone", right: "Corona dentis" },
-            { id: "p2", left: "Zahnwurzel", right: "Radix dentis" },
-            { id: "p3", left: "Zahnhals", right: "Collum dentis" },
-            { id: "p4", left: "Wurzelspitze", right: "Apex dentis" }
+          vocab: [
+            { de: "Die Zahnkrone", latin: "Corona dentis", fr: "La couronne dentaire", noteDe: "Sichtbarer Teil im Mund", noteFr: "Partie visible en bouche" },
+            { de: "Der Zahnhals", latin: "Collum dentis", fr: "Le collet dentaire", noteDe: "Übergangszone Schmelz/Zement", noteFr: "Zone de jonction amélo-cémentaire" },
+            { de: "Die Zahnwurzel", latin: "Radix dentis", fr: "La racine dentaire", noteDe: "Im Knochen verankert", noteFr: "Ancrée dans l'alvéole osseuse" },
+            { de: "Der Zahnschmelz", latin: "Enamelum", fr: "L'émail", noteDe: "96% anorganisch, härtestes Gewebe", noteFr: "96% minéral, tissu le plus dur" },
+            { de: "Das Zahnbein", latin: "Dentinum", fr: "La dentine", noteDe: "Elastischer Hauptkörper mit Tubuli", noteFr: "Corps principal élastique avec tubuli" },
+            { de: "Die Zahnpulpa", latin: "Pulpa dentis", fr: "La pulpe dentaire", noteDe: "Gefäße und Nerven", noteFr: "Vaisseaux et nerfs" },
+            { de: "Das Zahnfleisch", latin: "Gingiva", fr: "La gencive", noteDe: "Kragenschutz um Zahnhals", noteFr: "Protection gingivale" },
+            { de: "Die Wurzelhaut", latin: "Desmodontium", fr: "Le desmodonte", noteDe: "Sharpey-Fasern zur Federung", noteFr: "Fibres de suspension parodontales" }
           ]
         },
         {
-          id: "m1-l5",
+          id: "m1-l4",
           type: "quiz",
-          questionDe: "Wo treten Nerven und Blutgefäße in den Zahn ein?",
-          questionFr: "Par où les nerfs et vaisseaux sanguins pénètrent-ils dans la dent ?",
+          questionDe: "Welche Substanz ist das härteste Gewebe im gesamten menschlichen Körper?",
+          questionFr: "Quelle substance constitue le tissu le plus dur de tout le corps humain ?",
+          imageKey: "tooth-anatomy",
           options: [
-            {
-              textDe: "An der Wurzelspitze (Apex)",
-              textFr: "À l'apex de la racine",
-              isCorrect: true,
-              explanationDe: "Richtig! Am Foramen apicale an der Wurzelspitze treten Gefäße und Nerven ein.",
-              explanationFr: "Correct ! C'est par le foramen apical à l'extrémité de la racine."
-            },
-            {
-              textDe: "Mitten auf der Kaufläche",
-              textFr: "Au milieu de la surface de mastication",
-              isCorrect: false,
-              explanationDe: "Auf der Kaufläche befindet sich nur der harte Zahnschmelz.",
-              explanationFr: "La surface de mastication n'est couverte que d'émail dur."
-            },
-            {
-              textDe: "Am Zahnhals",
-              textFr: "Au niveau du collet",
-              isCorrect: false,
-              explanationDe: "Am Zahnhals endet der Schmelz und beginnt das Zement.",
-              explanationFr: "Au collet, l'émail se termine et le cément commence."
-            }
+            { textDe: "Zahnschmelz (Enamelum)", textFr: "Émail (Enamelum)", isCorrect: true, explanationDe: "Richtig! Schmelz besteht zu ca. 96 % aus Hydroxylapatit-Kristallen.", explanationFr: "Correct ! L'émail est composé à 96 % de cristaux d'hydroxyapatite." },
+            { textDe: "Zahnbein (Dentinum)", textFr: "Dentine (Dentinum)", isCorrect: false, explanationDe: "Dentin ist elastischer und hat ca. 70 % Mineralanteil.", explanationFr: "La dentine est plus élastique avec environ 70 % de minéraux." },
+            { textDe: "Wurzelzement (Cementum)", textFr: "Cément (Cementum)", isCorrect: false, explanationDe: "Wurzelzement ähnelt kompaktem Knochen (ca. 65 % Mineralanteil).", explanationFr: "Le cément ressemble à l'os compact (env. 65 % de minéraux)." },
+            { textDe: "Alveolarknochen (Os alveolare)", textFr: "Os alvéolaire", isCorrect: false, explanationDe: "Knochen ist weniger mineralisiert als Zahnschmelz.", explanationFr: "L'os est moins minéralisé que l'émail dentaire." }
+          ],
+          tipDe: "Besteht zu ca. 96 % aus Hydroxylapatit und schützt die Zahnkrone.",
+          tipFr: "Composé à 96 % d'hydroxyapatite protégeant la couronne."
+        },
+        {
+          id: "m1-l5",
+          type: "matching",
+          instructionDe: "Ordne die anatomischen deutschen Bezeichnungen ihren lateinischen Fachbegriffen zu:",
+          instructionFr: "Associez les termes anatomiques allemands/français aux termes latins :",
+          imageKey: "periodontium",
+          pairs: [
+            { id: "p1", left: "Zahnkrone / Couronne", right: "Corona dentis" },
+            { id: "p2", left: "Zahnschmelz / Émail", right: "Enamelum" },
+            { id: "p3", left: "Zahnmark / Pulpe", right: "Pulpa dentis" },
+            { id: "p4", left: "Zahnfleisch / Gencive", right: "Gingiva" },
+            { id: "p5", left: "Wurzelhaut / Desmodonte", right: "Desmodontium" }
           ]
         }
       ]
@@ -152,498 +200,380 @@ export const courseData: CourseData = {
     {
       id: "modul-2",
       order: 2,
-      titleDe: "Zahnhartsubstanzen & Pulpa",
-      titleFr: "Tissus durs de la dent & Pulpe",
-      subtitleDe: "Schmelz, Dentin, Zement & Zahnnerv",
-      subtitleFr: "Émail, dentine, cément & pulpe dentaire",
-      descriptionDe: "Verstehe die drei Zahnhartsubstanzen und das empfindliche Weichgewebe im Inneren.",
-      descriptionFr: "Découvrez les 3 tissus durs et le tissu mou vivant au cœur de la dent.",
-      badge: "💎",
+      titleDe: "Zahnarten & Gebissformen",
+      titleFr: "Types de dents & Dentures",
+      subtitleDe: "Schneidezähne, Eckzähne, Prämolaren & Molaren",
+      subtitleFr: "Incisives, canines, prémolaires & molaires",
+      descriptionDe: "Verstehe die funktionelle Morphologie der 4 Zahnarten sowie die Unterschiede zwischen Milch- und bleibendem Gebiss.",
+      descriptionFr: "Comprenez la morphologie des 4 types de dents et les différences entre denture temporaire et permanente.",
+      badge: "✨",
       color: "blue",
       xpReward: 120,
       lessons: [
         {
           id: "m2-l1",
           type: "theory",
-          titleDe: "Die Schichten des Zahnes",
-          titleFr: "Les couches de la dent",
-          contentDe: "Ein Zahn hat 3 Hartsubstanzen: Zahnschmelz (außen an der Krone, härteste Substanz), Dentin (Zahnbein, Hauptmasse) und Wurzelzement (um die Wurzel). Im Inneren liegt die weiche Pulpa mit Nerven und Blutgefäßen.",
-          contentFr: "Une dent possède 3 tissus minéralisés : l'émail (sur la couronne, substance la plus dure), la dentine (masse principale) et le cément (autour de la racine). Au centre se trouve la pulpe molle avec nerfs et vaisseaux.",
-          imageKey: "tooth-substances",
+          titleDe: "Die vier Zahntypen und ihre Aufgaben",
+          titleFr: "Les quatre types de dents et leurs fonctions",
+          contentDe: "Das menschliche Gebiss ist heterodont (aus verschiedenen Zahntypen aufgebaut). Jede Zahnart besitzt eine spezialisierte Kronen- und Wurzelform: Schneidezähne mit meißelförmiger Schneidekante zum Abbeißen, Eckzähne mit spitzer Höckerform zum Festhalten, Prämolaren mit 2 Höckern zum Zerkleinern und Molaren mit breiter Kaufläche (4-5 Höcker) zum Mahlen der Nahrung. Untersuche die eckigen 3D-Prismenmodelle in der Grafik.",
+          contentFr: "La denture humaine comporte 4 catégories : incisives tranchantes, canines pointues, prémolaires bicuspidées et molaires plurituberculées avec surface de broyage.",
+          imageKey: "tooth-types",
+          hotspots: [
+            {
+              id: "hs-incisor",
+              x: 15,
+              y: 40,
+              titleDe: "Schneidezahn (Incisivus)",
+              titleFr: "Incisive (Dens incisivus)",
+              latin: "Dens incisivus",
+              descriptionDe: "Meißelförmige Krone mit gerader Inzisalkante und 1 Wurzel. Dient dem Abbeißen fester Nahrung (8 Zähne im bleibenden Gebiss).",
+              descriptionFr: "Couronne biseautée à bord tranchant et racine unique pour couper les aliments (8 incisives au total)."
+            },
+            {
+              id: "hs-canine",
+              x: 38,
+              y: 38,
+              titleDe: "Eckzahn (Caninus)",
+              titleFr: "Canine (Dens caninus)",
+              latin: "Dens caninus",
+              descriptionDe: "Längste und stärkste Wurzel im Kiefer (Eckzahnführung). Spitz zulaufende Höckerform zum Halten und Abreißen (4 Zähne gesamt).",
+              descriptionFr: "Dent à racine la plus longue, formant le pilier d'angle de l'arcade pour guider la mastication (4 canines)."
+            },
+            {
+              id: "hs-premolar",
+              x: 62,
+              y: 42,
+              titleDe: "Prämolar (Backenzahn)",
+              titleFr: "Prémolaire (Dens premolaris)",
+              latin: "Dens premolaris",
+              descriptionDe: "Bikuspide Kaufläche mit bukkalem und oralem Höcker. 1. oberer Prämolar oft 2-wurzelig, übrige 1-wurzelig (8 Zähne, fehlen im Milchgebiss).",
+              descriptionFr: "Dent à deux cuspides (vestibulaire et orale) pour écraser la nourriture. Absente en denture lactéale."
+            },
+            {
+              id: "hs-molar",
+              x: 85,
+              y: 45,
+              titleDe: "Molar (Mahlzahn)",
+              titleFr: "Molaire (Dens molaris)",
+              latin: "Dens molaris",
+              descriptionDe: "Große Kaufläche mit Fissurenrelief und 4–5 Höckern. Oberkiefermolaren haben 3 Wurzeln, Unterkiefermolaren 2 Wurzeln (12 Zähne inkl. Weisheitszähne).",
+              descriptionFr: "Grande table occlusale à 4-5 cuspides pour broyer. 3 racines au maxillaire, 2 racines à la mandibule."
+            }
+          ],
           keyPoints: [
-            { de: "Schmelz: 96% Mineralien – härteste Körpersubstanz", fr: "Émail : 96% de minéraux – tissu le plus dur du corps" },
-            { de: "Dentin: 70% Mineralien – elastisch, mit Nervenkanälchen", fr: "Dentine : 70% de minéraux – élastique et sensible" },
-            { de: "Zement: 65% Mineralien – verankert die Haltefasern", fr: "Cément : 65% de minéraux – ancre les fibres de soutien" },
-            { de: "Pulpa: Weichgewebe – ernährt und versorgt den Zahn", fr: "Pulpe : tissu mou – nourrit et innerve la dent" }
+            { de: "Incisivi (8 Stück): Meißelform mit Inzisalkante zum Abbeißen", fr: "Incisives (8) : forme en biseau pour sectionner" },
+            { de: "Canini (4 Stück): Längste Wurzel, stabiler Eckpfeiler des Kiefers", fr: "Canines (4) : racine la plus longue, guidage canin" },
+            { de: "Prämolaren (8 Stück): 2 Höcker, existieren nur im bleibenden Gebiss", fr: "Prémolaires (8) : 2 cuspides, uniquement en denture adulte" },
+            { de: "Molaren (12 Stück): 4-5 Höcker, Mahlzähne mit 2-3 Wurzeln", fr: "Molaires (12) : 4 à 5 cuspides, 2 à 3 racines pour broyer" }
           ]
         },
         {
           id: "m2-l2",
-          type: "vocabulary",
-          titleDe: "Fachwörter: Zahnsubstanzen",
-          titleFr: "Vocabulaire : Tissus dentaires",
-          vocab: [
-            {
-              de: "Der Zahnschmelz",
-              latin: "Enamelum",
-              fr: "L'émail dentaire",
-              noteDe: "Härteste Körpersubstanz (96% Mineralien)",
-              noteFr: "Substance la plus dure du corps (96% minéraux)"
-            },
-            {
-              de: "Das Dentin (Zahnbein)",
-              latin: "Dentinum",
-              fr: "La dentine",
-              noteDe: "Hauptmasse des Zahnes (70% Mineralien)",
-              noteFr: "Masse principale de la dent (70% minéraux)"
-            },
-            {
-              de: "Das Wurzelzement",
-              latin: "Cementum",
-              fr: "Le cément",
-              noteDe: "Überzieht die Wurzel (65% Mineralien)",
-              noteFr: "Recouvre la racine (65% minéraux)"
-            },
-            {
-              de: "Die Zahnpulpa",
-              latin: "Pulpa dentis",
-              fr: "La pulpe dentaire",
-              noteDe: "Zahnmark / Zahnnerv (Weichgewebe)",
-              noteFr: "Nerf et vaisseaux sanguins (tissu mou)"
-            }
+          type: "theory",
+          titleDe: "Milchgebiss vs. Bleibendes Gebiss",
+          titleFr: "Denture temporaire vs. Denture permanente",
+          contentDe: "Das Milchgebiss (Dentes decidui) umfasst genau 20 Zähne (5 pro Quadrant: 2 Schneidezähne, 1 Eckzahn, 2 Milchmolaren - KEINE Prämolaren!). Das bleibende Erwachsenengebiss (Dentes permanentes) besitzt 32 Zähne (8 pro Quadrant: 2 Schneidezähne, 1 Eckzahn, 2 Prämolaren, 3 Molaren inkl. Weisheitszahn 'Dens serotinus').",
+          contentFr: "La denture temporaire compte 20 dents (sans prémolaires). La denture permanente complète comprend 32 dents réparties sur 4 quadrants.",
+          imageKey: "tooth-types",
+          keyPoints: [
+            { de: "Milchgebiss: 20 Zähne (Quadranten 5, 6, 7, 8) – keine Prämolaren", fr: "Denture de lait : 20 dents (quadrants 5-8) – sans prémolaires" },
+            { de: "Bleibendes Gebiss: 32 Zähne (Quadranten 1, 2, 3, 4) inkl. 4 Weisheitszähnen", fr: "Denture permanente : 32 dents (quadrants 1-4) avec dents de sagesse" },
+            { de: "Sechsjahrmolar (1. Molar / 16, 26, 36, 46): Bricht hinter den Milchzähnen durch", fr: "Dent de 6 ans (1ère molaire) : pousse sans chute préalable de dent lactéale" }
           ]
         },
         {
           id: "m2-l3",
-          type: "quiz",
-          questionDe: "Was ist die härteste Substanz im gesamten menschlichen Körper?",
-          questionFr: "Quelle est la substance la plus dure de tout le corps humain ?",
-          imageKey: "tooth-substances",
-          options: [
-            {
-              textDe: "Dentin (Zahnbein)",
-              textFr: "Dentine",
-              isCorrect: false,
-              explanationDe: "Dentin hat nur ca. 70 % Mineralgehalt und ist weicher.",
-              explanationFr: "La dentine ne contient que ~70 % de minéraux."
-            },
-            {
-              textDe: "Zahnschmelz (Enamelum)",
-              textFr: "Émail dentaire (Enamelum)",
-              isCorrect: true,
-              explanationDe: "Exzellent! Zahnschmelz besteht zu ca. 96 % aus anorganischen Mineralien (Hydroxylapatit).",
-              explanationFr: "Excellent ! L'émail est composé à ~96 % de minéraux (hydroxyapatite)."
-            },
-            {
-              textDe: "Kieferknochen",
-              textFr: "Os alvéolaire",
-              isCorrect: false,
-              explanationDe: "Knochen ist deutlich weicher und elastischer als Schmelz.",
-              explanationFr: "L'os est nettement plus mou et élastique que l'émail."
-            }
+          type: "vocabulary",
+          titleDe: "Fachbegriffe: Zahnarten & Anatomie",
+          titleFr: "Vocabulaire : Types de dents",
+          instructionDe: "Lerne die lateinischen Bezeichnungen der vier Zahnarten und Gebissstrukturen.",
+          instructionFr: "Mémorisez les noms latins des quatre catégories dentaires.",
+          imageKey: "tooth-types",
+          vocab: [
+            { de: "Schneidezahn", latin: "Dens incisivus", fr: "Incisive", noteDe: "Meißelförmige Schneidekante", noteFr: "Bord incisif biseauté" },
+            { de: "Eckzahn", latin: "Dens caninus", fr: "Canine", noteDe: "Längste Wurzel im Gebiss", noteFr: "Plus longue racine" },
+            { de: "Vormahlzahn / Prämolar", latin: "Dens premolaris", fr: "Prémolaire", noteDe: "2 Höcker (bispide)", noteFr: "Bicuspidée" },
+            { de: "Großer Mahlzahn / Molar", latin: "Dens molaris", fr: "Molaire", noteDe: "Große Kaufläche mit Fissuren", noteFr: "Grande table occlusale" },
+            { de: "Weisheitszahn", latin: "Dens serotinus (3. Molar)", fr: "Dent de sagesse", noteDe: "Zähne 18, 28, 38, 48", noteFr: "Dents 18, 28, 38, 48" },
+            { de: "Milchzähne", latin: "Dentes decidui", fr: "Dents temporaires (de lait)", noteDe: "Insgesamt 20 Zähne", noteFr: "20 dents au total" }
           ]
         },
         {
           id: "m2-l4",
           type: "quiz",
-          questionDe: "Kann sich zerstörter Zahnschmelz von selbst nachbilden?",
-          questionFr: "L'émail dentaire détruit peut-il se régénérer tout seul ?",
+          questionDe: "Wie viele Wurzeln besitzen die Molaren (großen Mahlzähne) im Oberkiefer in der Regel?",
+          questionFr: "Combien de racines possèdent généralement les molaires supérieures ?",
+          imageKey: "tooth-types",
           options: [
-            {
-              textDe: "Nein, da Schmelz keine lebenden Zellen mehr enthält.",
-              textFr: "Non, car l'émail ne contient plus de cellules vivantes.",
-              isCorrect: true,
-              explanationDe: "Richtig! Die Schmelzbildner (Ameloblasten) gehen beim Zahndurchbruch zugrunde. Karies muss repariert werden!",
-              explanationFr: "Exact ! Les améloblastes meurent lors de l'éruption de la dent."
-            },
-            {
-              textDe: "Ja, Schmelz wächst wie Haare nach.",
-              textFr: "Oui, l'émail repousse comme les cheveux.",
-              isCorrect: false,
-              explanationDe: "Leider nein! Schmelz kann nicht nachwachsen.",
-              explanationFr: "Malheureusement non, l'émail ne repousse jamais."
-            }
-          ]
+            { textDe: "3 Wurzeln (2 bukkal, 1 palatinal)", textFr: "3 racines (2 vestibulaires, 1 palatine)", isCorrect: true, explanationDe: "Richtig! Oberkiefermolaren haben 3 divergierende Wurzeln für optimalen Halt gegen Kaudruck.", explanationFr: "Correct ! Les molaires maxillaires possèdent 3 racines stables." },
+            { textDe: "2 Wurzeln (1 mesial, 1 distal)", textFr: "2 racines (1 mésiale, 1 distale)", isCorrect: false, explanationDe: "2 Wurzeln haben typischerweise die Molaren im Unterkiefer.", explanationFr: "2 racines caractérisent les molaires mandibulaires (inférieures)." },
+            { textDe: "1 Wurzel", textFr: "1 racine", isCorrect: false, explanationDe: "Eckzähne und Schneidezähne sind typischerweise einwurzelig.", explanationFr: "Les incisives et canines ont une seule racine." },
+            { textDe: "4 Wurzeln", textFr: "4 racines", isCorrect: false, explanationDe: "4 Wurzeln kommen anatomisch bei normalen Molaren extrem selten vor.", explanationFr: "4 racines sont une anomalie anatomique très rare." }
+          ],
+          tipDe: "Im Oberkiefer spreizen sich zwei bukkale und eine große palatinale Wurzel.",
+          tipFr: "Au maxillaire supérieur : 2 racines côté joue, 1 côté palais."
         }
       ]
     },
     {
       id: "modul-3",
       order: 3,
-      titleDe: "Zahnarten & Gebissentwicklung",
-      titleFr: "Types de dents & Dentition",
-      subtitleDe: "Milchgebiss vs. Bleibendes Gebiss",
-      subtitleFr: "Dents de lait vs. Dentition définitive",
-      descriptionDe: "Lerne Schneidezähne, Eckzähne, Prämolaren, Molaren und die Zahnanzahl beider Gebisse.",
-      descriptionFr: "Découvrez les incisives, canines, prémolaires, molaires et le nombre de dents.",
-      badge: "👶",
+      titleDe: "FDI-Zahnschema & Richtungsbezeichnungen",
+      titleFr: "Schéma dentaire FDI & Orientations",
+      subtitleDe: "Zwei-Ziffern-System & Lagebezeichnungen",
+      subtitleFr: "Système à deux chiffres & orientations spatiales",
+      descriptionDe: "Beherrsche das internationale 2-Ziffern-FDI-Zahnschema sowie alle zahnmedizinischen Lage- und Richtungsbezeichnungen im Schlaf.",
+      descriptionFr: "Maîtrisez le système international FDI à 2 chiffres et le vocabulaire d'orientation anatomique.",
+      badge: "🧭",
       color: "purple",
-      xpReward: 130,
+      xpReward: 140,
       lessons: [
         {
           id: "m3-l1",
           type: "theory",
-          titleDe: "Milchgebiss und bleibendes Gebiss",
-          titleFr: "Dentition de lait et dentition définitive",
-          contentDe: "Der Mensch hat im Leben zwei Gebisse: Das Milchgebiss hat insgesamt 20 Zähne (keine Prämolaren!). Das bleibende Gebiss des Erwachsenen hat 32 Zähne (inklusive 4 Weisheitszähnen).",
-          contentFr: "L'être humain possède deux dentitions : La dentition de lait compte 20 dents au total (aucune prémolaire !). La dentition définitive de l'adulte compte 32 dents (avec 4 dents de sagesse).",
-          imageKey: "tooth-types",
+          titleDe: "Das 2-Ziffern-System der FDI",
+          titleFr: "Le système FDI à deux chiffres",
+          contentDe: "Das FDI-Zahnschema (Fédération Dentaire Internationale) kennzeichnet jeden Zahn durch 2 Ziffern: Die 1. Ziffer bezeichnet den Quadranten (1–4 für bleibendes Gebiss, 5–8 für Milchgebiss), gezählt im Uhrzeigersinn aus Sicht des Patienten (oben rechts = 1, oben links = 2, unten links = 3, unten rechts = 4). Die 2. Ziffer bezeichnet die Zahnposition von der Kiefermitte nach hinten (1 = mittlerer Schneidezahn bis 8 = Weisheitszahn). Der Zahn 'eins-sechs' (16) ist somit der erste Molar oben rechts!",
+          contentFr: "Le schéma FDI identifie chaque dent par 2 chiffres prononcés séparément : le 1er pour le quadrant (1 à 4 adulte, 5 à 8 enfant dans le sens horaire du patient), le 2nd pour la position de 1 (médiane) à 8 (sagesse).",
+          imageKey: "fdi-scheme",
+          hotspots: [
+            {
+              id: "hs-q1",
+              x: 28,
+              y: 22,
+              titleDe: "Quadrant 1: Oberkiefer rechts (Patient)",
+              titleFr: "Quadrant 1 : Maxillaire droit (Patient)",
+              latin: "Regio maxillaris dextra (11–18)",
+              descriptionDe: "Oben rechts aus Patientensicht (auf dem Zahnschema links oben dargestellt). Zähne 11 bis 18 (Milchgebiss Quadrant 5: 51–55).",
+              descriptionFr: "Haut droit du point de vue patient (en haut à gauche sur le schéma). Dents 11 à 18 (dents de lait 51 à 55)."
+            },
+            {
+              id: "hs-q2",
+              x: 72,
+              y: 22,
+              titleDe: "Quadrant 2: Oberkiefer links (Patient)",
+              titleFr: "Quadrant 2 : Maxillaire gauche (Patient)",
+              latin: "Regio maxillaris sinistra (21–28)",
+              descriptionDe: "Oben links aus Patientensicht (im Schema rechts oben dargestellt). Zähne 21 bis 28 (Milchgebiss Quadrant 6: 61–65).",
+              descriptionFr: "Haut gauche du point de vue patient (en haut à droite sur le schéma). Dents 21 à 28 (dents de lait 61 à 65)."
+            },
+            {
+              id: "hs-q3",
+              x: 72,
+              y: 78,
+              titleDe: "Quadrant 3: Unterkiefer links (Patient)",
+              titleFr: "Quadrant 3 : Mandibule gauche (Patient)",
+              latin: "Regio mandibularis sinistra (31–38)",
+              descriptionDe: "Unten links aus Patientensicht (im Schema rechts unten dargestellt). Zähne 31 bis 38 (Milchgebiss Quadrant 7: 71–75).",
+              descriptionFr: "Bas gauche du point de vue patient (en bas à droite sur le schéma). Dents 31 à 38 (dents de lait 71 à 75)."
+            },
+            {
+              id: "hs-q4",
+              x: 28,
+              y: 78,
+              titleDe: "Quadrant 4: Unterkiefer rechts (Patient)",
+              titleFr: "Quadrant 4 : Mandibule droite (Patient)",
+              latin: "Regio mandibularis dextra (41–48)",
+              descriptionDe: "Unten rechts aus Patientensicht (im Schema links unten dargestellt). Zähne 41 bis 48 (Milchgebiss Quadrant 8: 81–85).",
+              descriptionFr: "Bas droit du point de vue patient (en bas à gauche sur le schéma). Dents 41 à 48 (dents de lait 81 à 85)."
+            }
+          ],
           keyPoints: [
-            { de: "Milchgebiss: 20 Zähne (10 oben, 10 unten)", fr: "Dents de lait : 20 dents (10 en haut, 10 en bas)" },
-            { de: "Bleibendes Gebiss: 32 Zähne (16 oben, 16 unten)", fr: "Dentition adulte : 32 dents (16 en haut, 16 en bas)" },
-            { de: "Prämolaren fehlen im Milchgebiss komplett!", fr: "Les prémolaires sont totalement absentes chez l'enfant !" }
+            { de: "Patienten-Perspektive: Quadrant 1 ist oben rechts beim Patienten!", fr: "Perspective patient : le quadrant 1 est en haut à droite du patient !" },
+            { de: "Ziffern einzeln aussprechen: Immer 'Eins-Sechs' (16) sagen, nie 'Sechzehn'", fr: "Énonciation : prononcer toujours 'un-six' (16), jamais 'seize'" },
+            { de: "Milchgebiss nutzt Quadranten 5, 6, 7, 8 (Zähne 51–85)", fr: "Dents temporaires : quadrants 5, 6, 7, 8 (dents 51 à 85)" }
           ]
         },
         {
           id: "m3-l2",
-          type: "vocabulary",
-          titleDe: "Fachbegriffe der Zahnarten",
-          titleFr: "Terminologie des types de dents",
-          vocab: [
-            {
-              de: "Schneidezähne",
-              latin: "Dentes incisivi",
-              fr: "Les incisives",
-              noteDe: "8 Zähne im Gebiss (zum Abbeißen)",
-              noteFr: "8 dents au total (pour trancher)"
-            },
-            {
-              de: "Eckzähne",
-              latin: "Dentes canini",
-              fr: "Les canines",
-              noteDe: "4 Zähne im Gebiss (längste Wurzel)",
-              noteFr: "4 dents au total (racine la plus longue)"
-            },
-            {
-              de: "Vormahlzähne (Prämolaren)",
-              latin: "Dentes praemolares",
-              fr: "Les prémolaires",
-              noteDe: "8 Zähne (nur im bleibenden Gebiss!)",
-              noteFr: "8 dents (uniquement chez l'adulte !)"
-            },
-            {
-              de: "Mahlzähne (Molaren)",
-              latin: "Dentes molares",
-              fr: "Les molaires",
-              noteDe: "12 Zähne im bleibenden Gebiss (inkl. Weisheitszähne)",
-              noteFr: "12 dents chez l'adulte (avec dents de sagesse)"
-            }
+          type: "theory",
+          titleDe: "Zahnmedizinische Lage- und Richtungsbezeichnungen",
+          titleFr: "Orientations et faces dentaires",
+          contentDe: "Zur präzisen Dokumentation von Befunden und Füllungen werden exakte Richtungsbegriffe verwendet: Mesial (zur Mitte des Zahnbogens hin), Distal (vom Zahnbogenzentrum weg / nach hinten), Vestibulär (zum Mundvorhof / Lippen / Wangen hin), Palatinal (zum Gaumen hin, im OK), Lingual (zur Zunge hin, im UK), Okklusal (auf der Kaufläche von Molaren/Prämolaren) und Inzisal (an der Schneidekante von Frontzähnen).",
+          contentFr: "Termes d'orientation : mésial (vers la ligne médiane), distal (vers l'arrière), vestibulaire (vers les joues/lèvres), palatin (vers le palais au maxillaire), lingual (vers la langue à la mandibule), occlusal (face masticatoire) et incisif (bord coupant).",
+          imageKey: "fdi-scheme",
+          keyPoints: [
+            { de: "Mesial = Zur Mitte des Zahnbogens | Distal = Zum Ende des Zahnbogens", fr: "Mésial = Vers la ligne médiane | Distal = Vers l'extrémité de l'arcade" },
+            { de: "Vestibulär / Bukkal = Zur Wange | Labial = Zur Lippe", fr: "Vestibulaire / Buccal = Côté joue | Labial = Côté lèvre" },
+            { de: "Palatinal = Zum Gaumen (nur OK) | Lingual = Zur Zunge (nur UK)", fr: "Palatin = Vers le palais (maxillaire) | Lingual = Vers la langue (mandibule)" },
+            { de: "Okklusal = Auf der Kaufläche | Inzisal = An der Schneidekante", fr: "Occlusal = Surface masticatoire | Incisif = Bord tranchant" },
+            { de: "Apikal = Zur Wurzelspitze | Koronal = Zur Zahnkrone hin", fr: "Apical = Vers l'apex | Coronaire = Vers la couronne" }
           ]
         },
         {
           id: "m3-l3",
-          type: "quiz",
-          questionDe: "Wie viele Zähne hat das vollständige Milchgebiss eines Kindes?",
-          questionFr: "Combien de dents compte la dentition de lait complète d'un enfant ?",
-          options: [
-            {
-              textDe: "20 Zähne",
-              textFr: "20 dents",
-              isCorrect: true,
-              explanationDe: "Genau! 5 Zähne pro Quadrant = 20 Zähne insgesamt.",
-              explanationFr: "Exact ! 5 dents par quadrant = 20 dents au total."
-            },
-            {
-              textDe: "32 Zähne",
-              textFr: "32 dents",
-              isCorrect: false,
-              explanationDe: "32 Zähne hat das bleibende Gebiss eines Erwachsenen.",
-              explanationFr: "32 dents correspond à l'adulte complet."
-            },
-            {
-              textDe: "28 Zähne",
-              textFr: "28 dents",
-              isCorrect: false,
-              explanationDe: "28 Zähne hat ein Erwachsener ohne Weisheitszähne.",
-              explanationFr: "28 dents correspond à l'adulte sans dents de sagesse."
-            }
+          type: "vocabulary",
+          titleDe: "Fachbegriffe: Lage- & Richtungsbezeichnungen",
+          titleFr: "Vocabulaire : Orientations anatomiques",
+          instructionDe: "Präge dir diese Richtungsbegriffe ein – sie werden bei jedem zahnärztlichen Befund diktiert!",
+          instructionFr: "Mémorisez ces termes indispensables pour la saisie des bilans dentaires.",
+          imageKey: "fdi-scheme",
+          vocab: [
+            { de: "Zur Kiefermitte hin", latin: "Mesial", fr: "Mésial", noteDe: "Entlang des Zahnbogens nach vorne", noteFr: "Vers le milieu de l'arcade" },
+            { de: "Von der Kiefermitte weg", latin: "Distal", fr: "Distal", noteDe: "Entlang des Zahnbogens nach hinten", noteFr: "Vers l'arrière de l'arcade" },
+            { de: "Zur Wange hin", latin: "Bukkal", fr: "Buccal / Jugal", noteDe: "Bei Prämolaren und Molaren", noteFr: "Pour molaires et prémolaires" },
+            { de: "Zur Lippe hin", latin: "Labial", fr: "Labial", noteDe: "Bei Schneide- und Eckzähnen", noteFr: "Pour incisives et canines" },
+            { de: "Zum Gaumen hin", latin: "Palatinal", fr: "Palatin", noteDe: "Nur im Oberkiefer (OK)", noteFr: "Uniquement au maxillaire supérieur" },
+            { de: "Zur Zunge hin", latin: "Lingual", fr: "Lingual", noteDe: "Nur im Unterkiefer (UK)", noteFr: "Uniquement à la mandibule (inférieur)" },
+            { de: "Auf der Kaufläche", latin: "Okklusal", fr: "Occlusal", noteDe: "Kauflächen von Seitenzähnen", noteFr: "Face masticatoire des molaires" },
+            { de: "Zur Wurzelspitze hin", latin: "Apikal", fr: "Apical", noteDe: "Richtung Apex dentis", noteFr: "En direction de l'apex radiculaire" }
           ]
         },
         {
           id: "m3-l4",
           type: "quiz",
-          questionDe: "Welche Zahngruppe gibt es im Milchgebiss NICHT?",
-          questionFr: "Quel groupe de dents N'EXISTE PAS dans la dentition de lait ?",
+          questionDe: "Welcher Zahn verbirgt sich hinter der FDI-Bezeichnung 'Zahn 24'?",
+          questionFr: "Quelle dent correspond à la désignation FDI 'Dent 24' ?",
+          imageKey: "fdi-scheme",
           options: [
-            {
-              textDe: "Eckzähne (Canini)",
-              textFr: "Canines",
-              isCorrect: false,
-              explanationDe: "Eckzähne sind auch bei Kindern vorhanden (je 1 pro Quadrant).",
-              explanationFr: "Les canines existent aussi chez l'enfant."
-            },
-            {
-              textDe: "Prämolaren (Vormahlzähne)",
-              textFr: "Prémolaires",
-              isCorrect: true,
-              explanationDe: "Richtig! Milchzähne haben nur Schneidezähne, Eckzähne und Milchmolaren. Keine Prämolaren!",
-              explanationFr: "Exact ! Les enfants ont des incisives, canines et molaires de lait, mais 0 prémolaire !"
-            },
-            {
-              textDe: "Schneidezähne (Incisivi)",
-              textFr: "Incisives",
-              isCorrect: false,
-              explanationDe: "Schneidezähne hat jedes Kind.",
-              explanationFr: "Les incisives sont les premières à pousser."
-            }
-          ]
+            { textDe: "Erster Prämolar oben links (Patient)", textFr: "Première prémolaire supérieure gauche (Patient)", isCorrect: true, explanationDe: "Richtig! Quadrant 2 = Oberkiefer links, Position 4 = erster Prämolar.", explanationFr: "Correct ! Quadrant 2 = haut gauche, position 4 = 1ère prémolaire." },
+            { textDe: "Erster Prämolar oben rechts (Patient)", textFr: "Première prémolaire supérieure droite (Patient)", isCorrect: false, explanationDe: "Oben rechts wäre Quadrant 1 (also Zahn 14).", explanationFr: "En haut à droite correspond au quadrant 1 (dent 14)." },
+            { textDe: "Zweiter Prämolar unten links (Patient)", textFr: "Deuxième prémolaire inférieure gauche (Patient)", isCorrect: false, explanationDe: "Unten links wäre Quadrant 3, zweiter Prämolar wäre 35.", explanationFr: "En bas à gauche correspond au quadrant 3 (dent 35)." },
+            { textDe: "Eckzahn oben links (Patient)", textFr: "Canine supérieure gauche (Patient)", isCorrect: false, explanationDe: "Der Eckzahn oben links ist Zahn 23.", explanationFr: "La canine supérieure gauche est la dent 23." }
+          ],
+          tipDe: "Erste Ziffer 2 = Oberkiefer links; Vierte Ziffer 4 = erster Backenzahn.",
+          tipFr: "Premier chiffre 2 = maxillaire gauche ; deuxième chiffre 4 = 1ère prémolaire."
         }
       ]
     },
     {
       id: "modul-4",
       order: 4,
-      titleDe: "Das FDI-Zahnschema",
-      titleFr: "Le schéma dentaire FDI",
-      subtitleDe: "Quadranten & Zahnbezeichnung (11, 26, 38...)",
-      subtitleFr: "Quadrants & Numérotation dentaire",
-      descriptionDe: "Meistere das internationale 2-Ziffern-System zur fehlerfreien Kommunikation am Behandlungsstuhl.",
-      descriptionFr: "Maîtrisez le système à 2 chiffres pour communiquer sans erreur au fauteuil dentaire.",
-      badge: "🎯",
-      color: "amber",
-      xpReward: 150,
+      titleDe: "Kariesentstehung, Parodontitis & Prophylaxe",
+      titleFr: "Cariogenèse, Parodontite & Prophylaxie",
+      subtitleDe: "Biofilm, Säureangriff, Zahnstein & PZR",
+      subtitleFr: "Biofilm, déminéralisation acide, tartre & hygiène",
+      descriptionDe: "Verstehe die Entstehung von Karies (Keyes-Trias), Gingivitis/Parodontitis und die Maßnahmen der zahnmedizinischen Prophylaxe.",
+      descriptionFr: "Comprenez le mécanisme de la carie, des parodontopathies et les protocoles de prophylaxie dentaire professionnelle.",
+      badge: "🛡️",
+      color: "teal",
+      xpReward: 140,
       lessons: [
         {
           id: "m4-l1",
           type: "theory",
-          titleDe: "Die 4 Quadranten nach FDI",
-          titleFr: "Les 4 quadrants selon le système FDI",
-          contentDe: "Das Gebiss wird vom Behandler aus in 4 Quadranten unterteilt: 1 = Oberkiefer rechts (vom Patienten aus gesehen!), 2 = Oberkiefer links, 3 = Unterkiefer links, 4 = Unterkiefer rechts. Gezählt wird im Uhrzeigersinn!",
-          contentFr: "La denture est divisée en 4 quadrants du point de vue du praticien : 1 = haut droit (vu par le patient !), 2 = haut gauche, 3 = bas gauche, 4 = bas droit. On tourne dans le sens des aiguilles d'une montre !",
-          imageKey: "fdi-scheme",
+          titleDe: "Die Keyes-Trias der Kariesentstehung",
+          titleFr: "Le trièdre de Keyes et la formation de la carie",
+          contentDe: "Karies entsteht durch das Zusammenspiel von vier Hauptfaktoren (nach Keyes): 1. Wirt & anfälliger Zahn (Schmelzstruktur), 2. Kariogene Mikroorganismen im Plaque-Biofilm (insb. Streptococcus mutans & Laktobazillen), 3. Substrat / niedermolekulare Kohlenhydrate (Zucker, Stärke) und 4. Einwirkzeit. Die Bakterien verstoffwechseln Zucker zu organischen Säuren (Milchsäure), die den pH-Wert unter den kritischen Wert von 5,5 absenken und Mineralien aus dem Zahnschmelz herauslösen (Demineralisation).",
+          contentFr: "La carie résulte de l'interaction de 4 facteurs (schéma de Keyes) : hôte/dent vulnérable, bactéries cariogènes (Streptococcus mutans), substrat sucré et temps d'exposition entraînant une déminéralisation acide sous pH 5.5.",
+          imageKey: "tooth-anatomy",
+          hotspots: [
+            {
+              id: "hs-enamel-caries",
+              x: 50,
+              y: 18,
+              titleDe: "Schmelzkaries (Caries superficialis)",
+              titleFr: "Carie de l'émail",
+              latin: "Caries superficialis / White Spot",
+              descriptionDe: "Erstes Stadium als Kreidefleck (White Spot). Durch Remineralisation mit Fluoriden noch vollständig reversibel!",
+              descriptionFr: "Premier stade réversible sous forme de tache blanche (white spot), traitable par fluoration."
+            },
+            {
+              id: "hs-dentin-caries",
+              x: 50,
+              y: 35,
+              titleDe: "Dentingkaries (Caries media / profunda)",
+              titleFr: "Carie dentinaire",
+              latin: "Caries media / Caries profunda",
+              descriptionDe: "Säuren und Bakterien dringen in die Dentinkanälchen ein. Schnelleres Fortschreiten und Schmerzempfindlichkeit auf Kälte/Süßes.",
+              descriptionFr: "Progression rapide dans les tubuli dentinaires avec sensibilité au froid et aux sucres."
+            },
+            {
+              id: "hs-pulpitis",
+              x: 50,
+              y: 46,
+              titleDe: "Pulpitis (Nervenentzündung)",
+              titleFr: "Pulpite aiguë",
+              latin: "Pulpitis acuta / purulenta",
+              descriptionDe: "Bakterientoxine erreichen das Zahnmark. Starke pulsierende Schmerzen, erfordert Wurzelkanalbehandlung (Endodontie).",
+              descriptionFr: "Infection du tissu pulpaire provoquant de vives douleurs spontanées et nécessitant une pulpectomie."
+            }
+          ],
           keyPoints: [
-            { de: "1. Ziffer = Quadrant (1 bis 4)", fr: "1er chiffre = Quadrant (1 à 4)" },
-            { de: "2. Ziffer = Zahnposition von der Mitte nach hinten (1 bis 8)", fr: "2e chiffre = Position de la ligne médiane vers l'arrière (1 à 8)" },
-            { de: "Wichtig: Jede Ziffer einzeln aussprechen! ('Eins-Eins', niemals 'Elf')", fr: "Important : prononcer chiffre par chiffre ! ('Un-Un', jamais 'Onze')" }
+            { de: "Kritischer pH-Wert: Ab pH < 5,5 beginnt die Demineralisation des Schmelzes", fr: "pH critique : la déminéralisation de l'émail débute dès pH < 5,5" },
+            { de: "Hauptkeime: Streptococcus mutans und Laktobazillen bilden Säuren", fr: "Bactéries clés : Streptococcus mutans produit des acides corrosifs" },
+            { de: "Fluoridierung: Wandelt Hydroxylapatit in säureresistenteren Fluorapatit um", fr: "Fluoration : transforme l'hydroxyapatite en fluorapatite résistante" }
           ]
         },
         {
           id: "m4-l2",
-          type: "vocabulary",
-          titleDe: "FDI-Fachbegriffe & Richtungsangaben",
-          titleFr: "Termes FDI & Orientations dentaires",
-          vocab: [
+          type: "theory",
+          titleDe: "Von der Gingivitis zur Parodontitis",
+          titleFr: "De la gingivite à la parodontite",
+          contentDe: "Wird Plaque nicht rechtzeitig entfernt, mineralisiert sie durch Speichelbestandteile zu Zahnstein (Calculus). Die Plaquebakterien am Zahnfleischrand lösen zunächst eine oberflächliche, reversible Zahnfleischentzündung aus (Gingivitis: Rötung, Schwellung, Blutung, aber KEIN Knochenabbau). Unbehandelt greift die Entzündung auf das gesamte Parodontium über (Parodontitis): Sharpey-Fasern werden zerstört, Zahnfleischtaschen vertiefen sich (> 3,5 mm) und der Alveolarknochen baut sich irreversibel ab – Zahnlockerung droht!",
+          contentFr: "La gingivite est une inflammation superficielle réversible sans perte osseuse. Non traitée, elle évolue en parodontite avec destruction des fibres de Sharpey, poches parodontales et résorption osseuse irréversible.",
+          imageKey: "periodontium",
+          hotspots: [
             {
-              de: "Mesial",
-              latin: "mesialis",
-              fr: "Mésial",
-              noteDe: "Zur Mitte des Zahnbogens hin gerichtet",
-              noteFr: "Tourné vers la ligne médiane"
+              id: "hs-gingivitis-zone",
+              x: 25,
+              y: 22,
+              titleDe: "Gingivitis (Zahnfleischentzündung)",
+              titleFr: "Gingivite superficielle",
+              latin: "Gingivitis",
+              descriptionDe: "Reversible Rötung, Schwellung und Blutung bei Berührung (BOP). Der Zahnhalteapparat ist noch intakt.",
+              descriptionFr: "Inflammation superficielle réversible avec saignement au sondage, sans perte d'attache."
             },
             {
-              de: "Distal",
-              latin: "distalis",
-              fr: "Distal",
-              noteDe: "Von der Zahnbogenmitte weg (nach hinten)",
-              noteFr: "Éloigné de la ligne médiane"
+              id: "hs-pocket-zone",
+              x: 45,
+              y: 48,
+              titleDe: "Parodontale Tasche / Faserverlust",
+              titleFr: "Poche parodontale & lyse ligamentaire",
+              latin: "Periodontitis / Sulcus deepening",
+              descriptionDe: "Bakterielle Zerstörung der desmodontalen Sharpey-Fasern. Bildung echter Zahnfleischtaschen (> 3,5 mm Tiefe).",
+              descriptionFr: "Destruction des fibres de soutien et approfondissement pathologique du sillon gingivo-dentaire."
             },
             {
-              de: "Okklusal",
-              latin: "occlusalis",
-              fr: "Occlusal",
-              noteDe: "Auf der Kaufläche (bei Backenzähnen)",
-              noteFr: "Sur la face masticatoire"
-            },
-            {
-              de: "Vestibulär (Bukkal / Labial)",
-              latin: "vestibularis",
-              fr: "Vestibulaire",
-              noteDe: "Zur Wange bzw. Lippe hin gewandt",
-              noteFr: "Orienté vers la joue ou les lèvres"
-            },
-            {
-              de: "Palatinal / Lingual",
-              latin: "palatinalis / lingualis",
-              fr: "Palatin / Lingual",
-              noteDe: "Zum Gaumen (OK) bzw. zur Zunge (UK) hin",
-              noteFr: "Vers le palais (haut) ou vers la langue (bas)"
+              id: "hs-bone-loss",
+              x: 75,
+              y: 75,
+              titleDe: "Knochenabbau (Alveolarresorption)",
+              titleFr: "Résorption osseuse alvéolaire",
+              latin: "Resorptio ossis alveolaris",
+              descriptionDe: "Irreversibler horizontaler oder vertikaler Knochenschwund mit Lockerung und möglichem Zahnverlust.",
+              descriptionFr: "Perte osseuse irréversible menant à la mobilité puis à l'expulsion spontanée de la dent."
             }
+          ],
+          keyPoints: [
+            { de: "Gingivitis = Reversible Entzündung des Zahnfleischs ohne Knochenabbau", fr: "Gingivite = Réversible, limitée à la gencive sans lyse osseuse" },
+            { de: "Parodontitis = Irreversibler Verlust von Alveolarknochen und Haltefasern", fr: "Parodontite = Irréversible avec résorption de l'os alvéolaire" },
+            { de: "Plaque-Entfernung & professionelle Zahnreinigung (PZR) sind der beste Schutz", fr: "Le détartrage et l'hygiène quotidienne sont la clé de voûte préventive" }
           ]
         },
         {
           id: "m4-l3",
-          type: "quiz",
-          questionDe: "Wie wird die Zahnbezeichnung '26' in der Zahnarztpraxis korrekt ausgesprochen?",
-          questionFr: "Comment se prononce correctement le numéro de dent '26' au cabinet ?",
-          imageKey: "fdi-scheme",
-          options: [
-            {
-              textDe: "Zwei-Sechs",
-              textFr: "Deux-Six",
-              isCorrect: true,
-              explanationDe: "Perfekt! Im FDI-System spricht man die Ziffern IMMER einzeln aus: 2 für Quadrant, 6 für Zahnposition.",
-              explanationFr: "Parfait ! En dentisterie, on prononce toujours chiffre par chiffre : Deux-Six !"
-            },
-            {
-              textDe: "Sechsundzwanzig",
-              textFr: "Vingt-six",
-              isCorrect: false,
-              explanationDe: "Falsch! Sag niemals 'Sechsundzwanzig', das führt zu Verwechslungen.",
-              explanationFr: "Faux ! Ne dites jamais 'Vingt-six'."
-            }
+          type: "vocabulary",
+          titleDe: "Fachbegriffe: Prophylaxe & Parodontologie",
+          titleFr: "Vocabulaire : Prophylaxie & Parodontologie",
+          instructionDe: "Wichtige Begriffe rund um Prophylaxe, Zahnreinigung und Befunderhebung:",
+          instructionFr: "Termes clés pour les soins d'hygiène et les bilans parodontaux :",
+          imageKey: "periodontium",
+          vocab: [
+            { de: "Zahnbelag / Bakterienrasen", latin: "Plaque / Biofilm", fr: "Plaque dentaire / Biofilm", noteDe: "Weicher, klebriger Belag", noteFr: "Dépôt mou adhérent" },
+            { de: "Zahnstein (verkalkte Plaque)", latin: "Calculus dentis", fr: "Tartre dentaire", noteDe: "Supragingival & subgingival (Konkrement)", noteFr: "Supra et sous-gingival" },
+            { de: "Zahnfleischentzündung", latin: "Gingivitis", fr: "Gingivite", noteDe: "Reversibel, blutet leicht", noteFr: "Réversible, saignements fréquents" },
+            { de: "Zahnbetterkrankung", latin: "Parodontitis", fr: "Parodontite", noteDe: "Mit Knochenabbau & Taschen", noteFr: "Avec poches et perte osseuse" },
+            { de: "Wurzelkanalbehandlung", latin: "Endodontie", fr: "Traitement endodontique", noteDe: "Bei irreversibler Pulpitis", noteFr: "Dévitalisation et obturation canalaire" },
+            { de: "Professionelle Zahnreinigung", latin: "PZR / Prophylaxis", fr: "Nettoyage professionnel (PZR)", noteDe: "Entfernung aller weichen/harten Beläge", noteFr: "Élimination des dépôts mous et durs" }
           ]
         },
         {
           id: "m4-l4",
           type: "quiz",
-          questionDe: "Welcher Zahn ist der Zahn '11'?",
-          questionFr: "Quelle est la dent numéro '11' ?",
-          imageKey: "fdi-scheme",
+          questionDe: "Was unterscheidet eine Gingivitis von einer echten Parodontitis?",
+          questionFr: "Quelle est la différence fondamentale entre une gingivite et une parodontite ?",
+          imageKey: "periodontium",
           options: [
-            {
-              textDe: "Oberer rechter mittlerer Schneidezahn",
-              textFr: "Incisive centrale supérieure droite",
-              isCorrect: true,
-              explanationDe: "Richtig: 1 = Oberkiefer rechts, 1 = erster Zahn ab der Mitte (mittlerer Schneidezahn).",
-              explanationFr: "Correct : 1 = haut droit, 1 = première dent depuis la médiane."
-            },
-            {
-              textDe: "Unterer linker Eckzahn",
-              textFr: "Canine inférieure gauche",
-              isCorrect: false,
-              explanationDe: "Der untere linke Eckzahn wäre 33.",
-              explanationFr: "La canine inférieure gauche est la 33."
-            },
-            {
-              textDe: "Oberer linker Weisheitszahn",
-              textFr: "Dent de sagesse supérieure gauche",
-              isCorrect: false,
-              explanationDe: "Der obere linke Weisheitszahn ist die 28.",
-              explanationFr: "La dent de sagesse supérieure gauche est la 28."
-            }
-          ]
-        },
-        {
-          id: "m4-l5",
-          type: "matching",
-          instructionDe: "Verbinde die FDI-Nummer mit der korrekten Zahnposition.",
-          instructionFr: "Reliez le numéro FDI à la position correspondante.",
-          pairs: [
-            { id: "f1", left: "Zahn 11", right: "OK rechts mittlerer Schneidezahn" },
-            { id: "f2", left: "Zahn 23", right: "OK links Eckzahn" },
-            { id: "f3", left: "Zahn 36", right: "UK links 1. Molar" },
-            { id: "f4", left: "Zahn 48", right: "UK rechts Weisheitszahn" }
-          ]
-        }
-      ]
-    },
-    {
-      id: "modul-5",
-      order: 5,
-      titleDe: "Hygiene & Infektionsschutz",
-      titleFr: "Hygiène & Prévention des infections",
-      subtitleDe: "Händedesinfektion, PSA, RDG & Sterilisation",
-      subtitleFr: "Désinfection, EPI, laveur & stérilisation",
-      descriptionDe: "Verstehe die unabdingbare Hygienekette zur Vermeidung von Kreuzkontaminationen.",
-      descriptionFr: "Comprenez la chaîne d'hygiène rigoureuse pour éviter toute contamination croisée.",
-      badge: "🧼",
-      color: "teal",
-      xpReward: 140,
-      lessons: [
-        {
-          id: "m5-l1",
-          type: "theory",
-          titleDe: "Die Hygienekette in der Praxis",
-          titleFr: "La chaîne d'hygiène au cabinet dentaire",
-          contentDe: "Als ZFA schützt du Patient und Praxisteam: 1. Hygienische Händedesinfektion (mind. 30 Sekunden). 2. Persönliche Schutzausrüstung (Handschuhe, Maske, Brille). 3. Maschinelle Aufbereitung im RDG (Thermodesinfektor). 4. Sterilisation im Autoklav bei 134°C.",
-          contentFr: "En tant qu'assistante dentaire, vous protégez le patient et l'équipe : 1. Désinfection des mains (min. 30 sec). 2. Port des EPI (gants, masque, lunettes). 3. Désinfection en thermodésinfecteur (RDG). 4. Stérilisation à l'autoclave à 134°C.",
-          imageKey: "hygiene-steps",
-          keyPoints: [
-            { de: "Händedesinfektion: 30 Sekunden vollständig einreiben", fr: "Désinfection des mains : frotter pendant 30 secondes complètes" },
-            { de: "PSA vor jeder Behandlung frisch anlegen", fr: "Enfiler des EPI propres avant chaque soin" },
-            { de: "Autoklav: Tötet Viren, Bakterien UND hitzeresistente Sporen ab", fr: "Autoclave : détruit virus, bactéries ET spores résistantes" }
-          ]
-        },
-        {
-          id: "m5-l2",
-          type: "vocabulary",
-          titleDe: "Fachbegriffe: Hygiene & Sterilisation",
-          titleFr: "Vocabulaire : Hygiène et Stérilisation",
-          vocab: [
-            {
-              de: "Asepsis (Keimfreiheit)",
-              latin: "Asepsis",
-              fr: "Asepsie",
-              noteDe: "Zustand völliger Abwesenheit von Keimen",
-              noteFr: "Absence totale de tout germe infectieux"
-            },
-            {
-              de: "Antisepsis",
-              latin: "Antisepsis",
-              fr: "Antisepsie",
-              noteDe: "Vernichtung von Keimen an lebendem Gewebe",
-              noteFr: "Destruction des germes sur tissu vivant"
-            },
-            {
-              de: "Desinfektion",
-              latin: "Desinfectio",
-              fr: "Désinfection",
-              noteDe: "Reduktion krankmachender Keime (nicht sporenfrei)",
-              noteFr: "Réduction des germes pathogènes (non sporicide)"
-            },
-            {
-              de: "Sterilisation",
-              latin: "Sterilisatio",
-              fr: "Stérilisation",
-              noteDe: "Vollständige Abtötung ALLER Keime und Sporen",
-              noteFr: "Élimination absolue de TOUS les germes et spores"
-            }
-          ]
-        },
-        {
-          id: "m5-l3",
-          type: "quiz",
-          questionDe: "Wie lange muss das Desinfektionsmittel bei der hygienischen Händedesinfektion mindestens verrieben werden?",
-          questionFr: "Combien de temps au minimum faut-il frictionner le produit lors de la désinfection des mains ?",
-          imageKey: "hygiene-steps",
-          options: [
-            {
-              textDe: "Mindestens 30 Sekunden",
-              textFr: "Au moins 30 secondes",
-              isCorrect: true,
-              explanationDe: "Genau! 30 Sekunden sind die vorgeschriebene Mindesteinwirkzeit nach RKI-Vorgaben.",
-              explanationFr: "Exact ! 30 secondes complètes sont obligatoires selon les normes d'hygiène."
-            },
-            {
-              textDe: "5 Sekunden",
-              textFr: "5 secondes",
-              isCorrect: false,
-              explanationDe: "5 Sekunden reichen keinesfalls aus, um Krankheitserreger abzutöten.",
-              explanationFr: "5 secondes ne suffisent absolument pas."
-            },
-            {
-              textDe: "2 Minuten",
-              textFr: "2 minutes",
-              isCorrect: false,
-              explanationDe: "2 Minuten ist die Dauer für die chirurgische Händedesinfektion vor OPs.",
-              explanationFr: "2 minutes correspond à la désinfection chirurgicale avant intervention."
-            }
-          ]
-        },
-        {
-          id: "m5-l4",
-          type: "quiz",
-          questionDe: "Was unterscheidet die Sterilisation von der Desinfektion?",
-          questionFr: "Quelle est la différence essentielle entre stérilisation et désinfection ?",
-          options: [
-            {
-              textDe: "Sterilisation tötet auch hitzeresistente bakterielle Sporen ab.",
-              textFr: "La stérilisation détruit également les spores bactériennes.",
-              isCorrect: true,
-              explanationDe: "Korrekt! Desinfektion tötet viele Keime, aber nur die Sterilisation macht absolut keimfrei (inkl. Sporen).",
-              explanationFr: "Correct ! Seule la stérilisation garantit l'élimination absolue des spores."
-            },
-            {
-              textDe: "Desinfektion ist immer heißer als Sterilisation.",
-              textFr: "La désinfection est plus chaude que la stérilisation.",
-              isCorrect: false,
-              explanationDe: "Nein, die Sterilisation im Autoklav erfolgt bei 134°C Dampfdruck.",
-              explanationFr: "Non, la stérilisation fonctionne sous haute pression à 134°C."
-            }
-          ]
+            { textDe: "Bei der Gingivitis ist kein Knochen abgebaut (voll reversibel); bei der Parodontitis liegt Knochen- und Faserverlust vor.", textFr: "La gingivite ne présente aucune perte osseuse (réversible) ; la parodontite détruit l'os et le ligament (irréversible).", isCorrect: true, explanationDe: "Richtig! Die Gingivitis beschränkt sich auf das Weichgewebe, während die Parodontitis das gesamte Stützgewebe zerstört.", explanationFr: "Correct ! La gingivite est réversible alors que la parodontite engendre une perte d'attache osseuse irréversible." },
+            { textDe: "Gingivitis betrifft nur Milchzähne, Parodontitis nur bleibende Zähne.", textFr: "La gingivite touche les enfants, la parodontite uniquement les adultes.", isCorrect: false, explanationDe: "Beide Krankheitsbilder können in jedem Alter auftreten.", explanationFr: "Les deux affections peuvent survenir à tout âge." },
+            { textDe: "Eine Parodontitis heilt von alleine ab, wenn man zuckerfreie Kaugummis kaut.", textFr: "Une parodontite guérit spontanément avec du chewing-gum sans sucre.", isCorrect: false, explanationDe: "Parodontitis erfordert eine systematische zahnärztliche Parodontaltherapie.", explanationFr: "La parodontite nécessite un traitement parodontal approfondi en cabinet." },
+            { textDe: "Es gibt keinen Unterschied – beide Begriffe bezeichnen exakt denselben Zustand.", textFr: "Il n'y a aucune différence, les deux termes sont synonymes.", isCorrect: false, explanationDe: "Gingivitis betrifft nur das Zahnfleisch, Parodontitis den Zahnhalteapparat.", explanationFr: "La gingivite est gingivale pure, la parodontite détruit l'appareil d'ancrage." }
+          ],
+          tipDe: "Achte auf die Beteiligung des Alveolarknochens und der Sharpey-Fasern.",
+          tipFr: "Considérez l'intégrité ou la résorption de l'os alvéolaire."
         }
       ]
     }
   ]
 };
-

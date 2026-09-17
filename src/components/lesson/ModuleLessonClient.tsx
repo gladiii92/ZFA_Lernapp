@@ -13,6 +13,7 @@ import { VocabTable } from '@/components/lesson/VocabTable';
 import { QuizCard } from '@/components/lesson/QuizCard';
 import { MatchingCard } from '@/components/lesson/MatchingCard';
 import { CompletionModal } from '@/components/lesson/CompletionModal';
+import { InteractiveDiagram } from '@/components/interactive/InteractiveDiagram';
 import { X, ArrowRight } from 'lucide-react';
 import { sounds } from '@/lib/sound';
 
@@ -24,7 +25,13 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
   const router = useRouter();
   const { markLessonComplete, markModuleComplete } = useProgress();
 
-  const currentModule = courseData.modules.find((m) => m.id === moduleId);
+  const currentModule = courseData.modules.find(
+    (m) =>
+      m.id === moduleId ||
+      (typeof m.order === 'number' && (`m${m.order}` === moduleId || `modul-${m.order}` === moduleId || `module-${m.order}` === moduleId)) ||
+      (m.id.startsWith('modul-') && m.id.replace('modul-', 'm') === moduleId) ||
+      (m.id.startsWith('m') && m.id.replace(/^m/, 'modul-') === moduleId)
+  );
 
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [isQuizAnswered, setIsQuizAnswered] = useState(false);
@@ -33,11 +40,14 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
 
   if (!currentModule) {
     return (
-      <MobileContainer className="p-6 text-center justify-center items-center">
-        <h2 className="text-xl font-bold text-slate-800">Modul nicht gefunden</h2>
-        <p className="text-xs text-slate-500 mt-1">Module introuvable</p>
-        <Link href="/" className="mt-4 inline-block text-emerald-600 font-bold text-sm">
-          Zurück zur Startseite / Retour
+      <MobileContainer className="p-6 text-center justify-center items-center bg-[#0f172a]">
+        <h2 className="text-xl font-bold text-slate-100">Modul nicht gefunden</h2>
+        <p className="text-xs text-slate-400 mt-1">Module introuvable</p>
+        <Link
+          href="/"
+          className="mt-6 inline-flex items-center justify-center min-h-[44px] px-4 py-2 rounded-xl bg-sky-500/20 text-sky-400 font-bold text-sm border border-sky-500/30 hover:bg-sky-500/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+        >
+          ← Zurück zur Startseite / Retour
         </Link>
       </MobileContainer>
     );
@@ -49,8 +59,8 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
   const handleNext = () => {
     sounds.playClick();
 
-    // Mark current lesson as complete
-    markLessonComplete(moduleId, currentLesson.id, 20);
+    // Aktuelle Lektion als abgeschlossen markieren
+    markLessonComplete(currentModule.id, currentLesson.id, 20);
 
     if (currentLessonIndex < totalLessons - 1) {
       setCurrentLessonIndex((prev) => prev + 1);
@@ -58,8 +68,8 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
       setIsMatchingCompleted(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Completed all lessons in module!
-      markModuleComplete(moduleId, currentModule.xpReward);
+      // Gesamtes Modul gemeistert
+      markModuleComplete(currentModule.id, currentModule.xpReward);
       setShowCompletionModal(true);
     }
   };
@@ -71,7 +81,7 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
     setShowCompletionModal(false);
   };
 
-  // Determine whether "Weiter" button is ready to click
+  // Prüfung, ob der Fortschritts-Button aktiv geschaltet werden darf
   const canProceed = () => {
     if (currentLesson.type === 'theory' || currentLesson.type === 'vocabulary') {
       return true;
@@ -86,15 +96,17 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
   };
 
   return (
-    <MobileContainer className="bg-slate-50 min-h-screen">
-      {/* Top Header with Close and Progress */}
-      <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md px-4 py-3 border-b border-slate-200/80 flex items-center gap-3">
+    <MobileContainer className="bg-[#0f172a]">
+      {/* Sticky App-Header mit Barrierefreiheit und Fortschrittsbalken */}
+      <header className="sticky top-0 z-30 bg-[#0f172a]/95 backdrop-blur-md px-4 py-3 border-b border-slate-800/90 flex items-center gap-3">
         <button
+          type="button"
           onClick={() => router.push('/')}
-          className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          className="flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
           title="Schließen / Fermer"
+          aria-label="Lektion beenden und zur Übersicht zurückkehren"
         >
-          <X className="w-5 h-5 stroke-[2.5]" />
+          <X className="w-5 h-5 stroke-[2.5]" aria-hidden="true" />
         </button>
 
         <div className="flex-1">
@@ -104,15 +116,60 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
           />
         </div>
 
-        <span className="text-xs font-black text-slate-500 min-w-[36px] text-right">
+        <span className="text-xs font-bold text-slate-400 min-w-[40px] text-right font-mono">
           {currentLessonIndex + 1}/{totalLessons}
         </span>
-      </div>
+      </header>
 
-      {/* Main Content Area */}
-      <div className="flex-1 px-4 py-4 overflow-y-auto">
+      {/* Haupt-Lernbereich mit sicherer Polsterung nach unten */}
+      <div className="flex-1 px-4 py-4 pb-32">
+        {/* Modul-Orientierungsbanner */}
+        <div className="mb-4 flex items-center justify-between rounded-xl bg-slate-900/80 border border-slate-800/90 px-3 py-2">
+          <div className="flex items-center gap-2 truncate">
+            <span className="h-2 w-2 rounded-full bg-sky-400 animate-pulse flex-shrink-0" aria-hidden="true" />
+            <span className="text-xs font-semibold text-slate-300 truncate">
+              {currentModule.titleDe}
+            </span>
+          </div>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20 flex-shrink-0">
+            Modul {currentModule.order ?? currentModule.id}
+          </span>
+        </div>
+
+        {/* Dynamische Darstellung je nach Lektionstyp */}
         {currentLesson.type === 'theory' && (
-          <TheoryCard lesson={currentLesson} />
+          <div className="space-y-4">
+            <TheoryCard lesson={currentLesson} />
+
+            {(Boolean(currentLesson.imageKey) || (currentLesson.hotspots && currentLesson.hotspots.length > 0)) && (
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-3 sm:p-4 shadow-xl backdrop-blur overflow-hidden">
+                <div className="mb-2 flex items-center justify-between px-1">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-500/20 px-2.5 py-1 text-xs font-semibold text-sky-400 border border-sky-500/30">
+                    <span aria-hidden="true">🔬</span>
+                    <span>Interaktive Grafik & Hotspots</span>
+                  </span>
+                  <span className="text-[11px] font-medium text-slate-400">
+                    Tippe zum Erkunden
+                  </span>
+                </div>
+
+                <InteractiveDiagram
+                  imageKey={currentLesson.imageKey}
+                  hotspots={currentLesson.hotspots}
+                  title={currentLesson.titleDe}
+                  subtitle={currentLesson.titleFr}
+                />
+
+                <div className="mt-3 flex items-start gap-2 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-amber-200/90 text-xs leading-relaxed">
+                  <span className="text-base select-none leading-none mt-0.5" aria-hidden="true">💡</span>
+                  <div>
+                    <strong className="font-semibold text-amber-300">Erstmal ganz in Ruhe einprägen:</strong>{' '}
+                    Nutze die Hotspots und Schnellwahl-Chips, um die anatomischen Strukturen und Fachbegriffe schrittweise zu verinnerlichen.
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         )}
 
         {currentLesson.type === 'vocabulary' && (
@@ -123,7 +180,7 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
           <QuizCard
             lesson={currentLesson}
             isAnswered={isQuizAnswered}
-            onAnswerSelected={(isCorrect) => {
+            onAnswerSelected={() => {
               setIsQuizAnswered(true);
             }}
           />
@@ -133,43 +190,38 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
           <MatchingCard
             lesson={currentLesson}
             isAnswered={isMatchingCompleted}
-            onComplete={(isCorrect) => {
+            onComplete={() => {
               setIsMatchingCompleted(true);
             }}
           />
         )}
       </div>
 
-      {/* Sticky Bottom Navigation Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-30 max-w-md mx-auto p-4 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg">
+      {/* Sticky Bottom-Bar mit min. 48px CTA-Button und iOS/Android Safe Area */}
+      <footer className="fixed bottom-0 left-0 right-0 z-30 max-w-md mx-auto p-4 bg-[#0f172a]/95 backdrop-blur-md border-t border-slate-800/90 shadow-2xl pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
         <Button
           variant="primary"
           size="lg"
           fullWidth
           disabled={!canProceed()}
           onClick={handleNext}
-          className="flex items-center justify-center gap-2"
+          className="min-h-[48px] text-base font-bold flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 active:translate-y-0.5 focus-visible:ring-2 focus-visible:ring-sky-400"
         >
-          <span>
-            {currentLessonIndex === totalLessons - 1
-              ? 'Abschließen / Terminer'
-              : 'Weiter / Continuer'}
-          </span>
-          <ArrowRight className="w-5 h-5 inline stroke-[2.5]" />
+          <span>{currentLessonIndex < totalLessons - 1 ? 'Weiter' : 'Modul abschließen'}</span>
+          <ArrowRight className="w-5 h-5 ml-1" aria-hidden="true" />
         </Button>
-      </div>
+      </footer>
 
-      {/* Celebration Modal upon completing the module */}
+      {/* Abschluss-Modal */}
       {showCompletionModal && (
         <CompletionModal
           moduleTitleDe={currentModule.titleDe}
           moduleTitleFr={currentModule.titleFr}
           xpEarned={currentModule.xpReward}
-          onFinish={() => router.push('/')}
           onRestart={handleRestart}
+          onFinish={() => router.push('/')}
         />
       )}
     </MobileContainer>
   );
 }
-

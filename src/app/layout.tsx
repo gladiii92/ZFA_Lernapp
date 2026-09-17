@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🦷</text></svg>',
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'ZFA Lernapp',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export const viewport: Viewport = {
@@ -15,6 +23,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  viewportFit: 'cover',
+  themeColor: '#020617',
 };
 
 export default function RootLayout({
@@ -23,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de">
-      <body className="bg-slate-100 text-slate-900 min-h-screen">
+    <html lang="de" className="dark h-full">
+      <body className="bg-[#020617] text-slate-100 min-h-screen min-h-[100dvh] font-sans antialiased selection:bg-sky-500/30 selection:text-sky-200 overflow-x-hidden">
         <ProgressProvider>
           {children}
         </ProgressProvider>
@@ -32,4 +42,3 @@ export default function RootLayout({
     </html>
   );
 }
-

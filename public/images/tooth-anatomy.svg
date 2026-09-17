@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="100%" height="100%" aria-labelledby="toothAnatomyTitle toothAnatomyDesc">
+  <title id="toothAnatomyTitle">Anatomischer Aufbau des Zahnes (Eckiges ZFA-Lehrmodell)</title>
+  <desc id="toothAnatomyDesc">Kubisch-prismatischer Querschnitt eines menschlichen Zahnes nach ZFA-Lehrmaterial mit eckiger Zahnkrone, Schmelz, Dentin, Pulpa, Zement, Wurzelkanal, Knochen und Zahnfleisch.</desc>
+  <defs>
+    <linearGradient id="enamelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="dentinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="60%" stop-color="#FACC15"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+    <linearGradient id="pulpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F87171"/>
+      <stop offset="50%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#991B1B"/>
+    </linearGradient>
+    <linearGradient id="cementumGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="gumGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FB7185"/>
+      <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="boneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <pattern id="bonePatternDark" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.5" fill="#475569" opacity="0.4"/>
+      <circle cx="10" cy="10" r="1.5" fill="#475569" opacity="0.4"/>
+      <path d="M 1,8 L 5,12 M 9,2 L 13,6" stroke="#334155" stroke-width="0.8" opacity="0.5"/>
+    </pattern>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <style>
+      .section-title { font-family: system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #F8FAFC; }
+      .section-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #94A3B8; }
+      .lbl-title { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; fill: #F1F5F9; }
+      .lbl-latin { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; fill: #94A3B8; }
+      .lbl-badge { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #38BDF8; }
+      .guide-line { stroke: #475569; stroke-width: 1.5; stroke-dasharray: 4,3; }
+      .guide-dot { fill: #38BDF8; }
+      .bracket-line { stroke: #38BDF8; stroke-width: 2; fill: none; }
+      .hotspot-interactive { cursor: pointer; transition: opacity 0.2s; }
+      .hotspot-interactive:hover { opacity: 0.88; }
+    </style>
+  </defs>
+
+  <!-- Hintergrund & Rahmen (Antigravity Dark-Slate) -->
+  <rect width="100%" height="100%" fill="#0B1120" rx="12"/>
+  <rect x="10" y="10" width="780" height="680" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" rx="10"/>
+
+  <text x="400" y="45" text-anchor="middle" class="section-title">Anatomie des Zahnes (Eckiges ZFA-Lehrmodell)</text>
+  <text x="400" y="68" text-anchor="middle" class="section-sub">Kubisch-prismatischer Querschnitt der Zahnhartsubstanzen, Pulpa &amp; Verankerung</text>
+
+  <!-- Gliederungsklammern links (Krone, Hals, Wurzel) -->
+  <g id="macro-divisions">
+    <!-- Krone -->
+    <path d="M 180,95 L 165,95 L 165,240 L 180,240" class="bracket-line"/>
+    <text x="150" y="150" text-anchor="end" class="lbl-title">Zahnkrone</text>
+    <text x="150" y="168" text-anchor="end" class="lbl-latin">Corona dentis</text>
+    <text x="150" y="186" text-anchor="end" class="lbl-badge">(Klinisch sichtbar)</text>
+
+    <!-- Zahnhals -->
+    <path d="M 180,245 L 165,245 L 165,300 L 180,300" class="bracket-line"/>
+    <text x="150" y="265" text-anchor="end" class="lbl-title">Zahnhals</text>
+    <text x="150" y="283" text-anchor="end" class="lbl-latin">Cervix dentis / Collum</text>
+
+    <!-- Wurzel -->
+    <path d="M 180,305 L 165,305 L 165,585 L 180,585" class="bracket-line"/>
+    <text x="150" y="430" text-anchor="end" class="lbl-title">Zahnwurzel</text>
+    <text x="150" y="448" text-anchor="end" class="lbl-latin">Radix dentis</text>
+    <text x="150" y="466" text-anchor="end" class="lbl-badge">(Im Knochen verankert)</text>
+  </g>
+
+  <!-- Alveolarknochen Hintergrund (Kieferknochen mit eckiger Alveole) -->
+  <g id="layer-bone" class="hotspot-interactive">
+    <path d="M 215,290 L 290,290 L 305,335 L 325,620 L 475,620 L 495,335 L 510,290 L 585,290 L 585,620 L 215,620 Z" fill="url(#boneGrad)" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 215,290 L 290,290 L 305,335 L 325,620 L 475,620 L 495,335 L 510,290 L 585,290 L 585,620 L 215,620 Z" fill="url(#bonePatternDark)"/>
+  </g>
+
+  <!-- Periodontalspalt (Desmodont / Wurzelhaut) -->
+  <g id="layer-periodontium" class="hotspot-interactive">
+    <path d="M 302,285 L 320,585 L 330,620 L 338,620 L 322,580 L 308,290 Z" fill="#0284C7" opacity="0.75"/>
+    <path d="M 498,285 L 480,585 L 470,620 L 462,620 L 478,580 L 492,290 Z" fill="#0284C7" opacity="0.75"/>
+  </g>
+
+  <!-- Gingiva (Zahnfleisch) eckig/kantig -->
+  <g id="layer-gingiva" class="hotspot-interactive" filter="url(#softGlow)">
+    <path d="M 215,310 L 235,260 L 285,260 L 300,285 L 295,340 L 215,340 Z" fill="url(#gumGrad)" stroke="#BE123C" stroke-width="1.2"/>
+    <path d="M 585,310 L 565,260 L 515,260 L 500,285 L 505,340 L 585,340 Z" fill="url(#gumGrad)" stroke="#BE123C" stroke-width="1.2"/>
+    <line x1="298" y1="262" x2="300" y2="285" stroke="#FFE4E6" stroke-width="1.5" stroke-dasharray="2,2"/>
+    <line x1="502" y1="262" x2="500" y2="285" stroke="#FFE4E6" stroke-width="1.5" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- Wurzelzement (Cementum) eckig/prismatisch auf der Wurzel -->
+  <g id="layer-cementum" class="hotspot-interactive">
+    <path d="M 302,285 L 320,585 L 340,600 L 380,595 L 385,580 L 375,575 L 330,570 L 312,285 Z" fill="url(#cementumGrad)" stroke="#92400E" stroke-width="1"/>
+    <path d="M 498,285 L 480,585 L 460,600 L 420,595 L 415,580 L 425,575 L 470,570 L 488,285 Z" fill="url(#cementumGrad)" stroke="#92400E" stroke-width="1"/>
+  </g>
+
+  <!-- Zahnschmelz (Enamelum) - ECKIG / KUBISCH / PRISMATISCH MIT AUSGEPRÄGTEN HÖCKERN & KANTEN -->
+  <g id="layer-enamel" class="hotspot-interactive" filter="url(#softGlow)">
+    <path d="M 302,285 L 285,230 L 290,140 L 325,95 L 365,112 L 400,135 L 435,112 L 475,95 L 510,140 L 515,230 L 498,285 L 472,280 L 480,225 L 468,160 L 435,145 L 400,170 L 365,145 L 332,160 L 320,225 L 328,280 Z" fill="url(#enamelGrad)" stroke="#F8FAFC" stroke-width="1.8"/>
+    <line x1="325" y1="95" x2="332" y2="160" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+    <line x1="475" y1="95" x2="468" y2="160" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+    <line x1="400" y1="135" x2="400" y2="170" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  </g>
+
+  <!-- Dentin (Zahnbein) - ECKIGER KUBISCHER KERN -->
+  <g id="layer-dentin" class="hotspot-interactive">
+    <path d="M 328,280 L 320,225 L 332,160 L 365,145 L 400,170 L 435,145 L 468,160 L 480,225 L 472,280 L 452,360 L 425,565 L 418,575 L 412,565 L 426,365 L 426,280 L 418,225 L 400,225 L 382,225 L 374,280 L 374,365 L 388,565 L 382,575 L 375,565 L 348,360 Z" fill="url(#dentinGrad)" stroke="#B45309" stroke-width="1.2"/>
+    <path d="M 350,190 L 330,175 M 360,210 L 340,195 M 450,190 L 470,175 M 440,210 L 460,195" stroke="#CA8A04" stroke-width="1" opacity="0.6"/>
+  </g>
+
+  <!-- Pulpa (Zahnmark) - ECKIGER HOHLRAUM MIT SPITZEN PULPENHÖRNERN -->
+  <g id="layer-pulp" class="hotspot-interactive">
+    <path d="M 374,280 L 372,230 L 382,210 L 392,225 L 400,222 L 408,225 L 418,210 L 428,230 L 426,280 L 426,365 L 412,565 L 406,575 L 394,575 L 388,565 L 374,365 Z" fill="url(#pulpGrad)" stroke="#B91C1C" stroke-width="1.2"/>
+    <path d="M 400,228 L 400,370 L 401,575" stroke="#FEF08A" stroke-width="2" fill="none"/>
+    <path d="M 395,235 L 394,370 L 397,575" stroke="#38BDF8" stroke-width="1.5" fill="none"/>
+    <path d="M 405,235 L 406,370 L 403,575" stroke="#F43F5E" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Foramen apicale (Wurzelspitzenöffnung) -->
+  <rect x="395" y="573" width="10" height="5" fill="#38BDF8" rx="2"/>
+
+  <!-- Beschriftungen & Hilfslinien -->
+  <g id="annotations">
+    <!-- 1. Zahnschmelz -->
+    <line x1="435" y1="112" x2="600" y2="112" class="guide-line"/>
+    <circle cx="435" cy="112" r="4" class="guide-dot"/>
+    <text x="610" y="108" class="lbl-title">1. Zahnschmelz (Eckige Höcker)</text>
+    <text x="610" y="125" class="lbl-latin">Enamelum (95-97% anorganisch, härteste Substanz)</text>
+
+    <!-- 2. Dentin -->
+    <line x1="440" y1="185" x2="600" y2="185" class="guide-line"/>
+    <circle cx="440" cy="185" r="4" class="guide-dot"/>
+    <text x="610" y="181" class="lbl-title">2. Dentin (Zahnbein)</text>
+    <text x="610" y="198" class="lbl-latin">Substantia eburnea (ca. 70% anorganisch, vital &amp; sensibel)</text>
+
+    <!-- 3. Pulpa -->
+    <line x1="418" y1="245" x2="600" y2="245" class="guide-line"/>
+    <circle cx="418" cy="245" r="4" class="guide-dot"/>
+    <text x="610" y="241" class="lbl-title">3. Pulpa (Zahnmark)</text>
+    <text x="610" y="258" class="lbl-latin">Pulpa dentis mit Pulpenhörnern, Gefäßen &amp; Nerven</text>
+
+    <!-- 4. Zahnfleisch -->
+    <line x1="515" y1="305" x2="600" y2="305" class="guide-line"/>
+    <circle cx="515" cy="305" r="4" class="guide-dot"/>
+    <text x="610" y="301" class="lbl-title">4. Zahnfleisch (Gingiva)</text>
+    <text x="610" y="318" class="lbl-latin">Gingiva propria mit Sulcus (Zahnfleischtasche)</text>
+
+    <!-- 5. Wurzelzement -->
+    <line x1="478" y1="380" x2="600" y2="380" class="guide-line"/>
+    <circle cx="478" cy="380" r="4" class="guide-dot"/>
+    <text x="610" y="376" class="lbl-title">5. Wurzelzement</text>
+    <text x="610" y="393" class="lbl-latin">Cementum (Überzug der Wurzel, Sharpey-Fasern)</text>
+
+    <!-- 6. Wurzelhaut -->
+    <line x1="488" y1="440" x2="600" y2="440" class="guide-line"/>
+    <circle cx="488" cy="440" r="4" class="guide-dot"/>
+    <text x="610" y="436" class="lbl-title">6. Wurzelhaut (Desmodont)</text>
+    <text x="610" y="453" class="lbl-latin">Periodontium (Federnde Faseraufhängung im Fach)</text>
+
+    <!-- 7. Alveolarknochen -->
+    <line x1="520" y1="500" x2="600" y2="500" class="guide-line"/>
+    <circle cx="520" cy="500" r="4" class="guide-dot"/>
+    <text x="610" y="496" class="lbl-title">7. Alveolarknochen</text>
+    <text x="610" y="513" class="lbl-latin">Pars alveolaris / Os alveolare des Kiefers</text>
+
+    <!-- 8. Wurzelspitzenöffnung -->
+    <line x1="400" y1="580" x2="600" y2="580" class="guide-line"/>
+    <circle cx="400" cy="580" r="4" class="guide-dot"/>
+    <text x="610" y="576" class="lbl-title">8. Foramen apicale</text>
+    <text x="610" y="593" class="lbl-latin">Wurzelspitzenloch (Eintrittspforte für Nerv &amp; Gefäße)</text>
+  </g>
+
+  <!-- Didaktischer Infokasten unten -->
+  <rect x="30" y="628" width="740" height="42" fill="#1E293B" stroke="#334155" rx="6"/>
+  <text x="45" y="653" font-family="system-ui, -apple-system, sans-serif" font-size="12px" fill="#FBBF24" font-weight="700">ZFA-Merksatz:</text>
+  <text x="145" y="653" font-family="system-ui, -apple-system, sans-serif" font-size="12px" fill="#E2E8F0">Die 3 Zahnhartsubstanzen sind Schmelz (härteste!), Dentin (Hauptmasse) und Zement. Die Pulpa ist weich und vital!</text>
+</svg>

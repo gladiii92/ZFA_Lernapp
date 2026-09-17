@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="100%" height="100%" aria-labelledby="fdiTitle fdiDesc">
+  <title id="fdiTitle">Das FDI-Zahnschema (Zwei-Ziffern-System)</title>
+  <desc id="fdiDesc">Interaktives FDI-Zahnschema der Fédération Dentaire Internationale mit den 4 Quadranten, permanenter Bezahnung (11-48), Milchgebiss (51-85) und Richtungsbezeichnungen.</desc>
+  <defs>
+    <style>
+      .fdi-main-title { font-family: system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #F8FAFC; }
+      .fdi-sub-title { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #94A3B8; }
+      .axis-label { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #38BDF8; letter-spacing: 0.5px; }
+      .quad-badge { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 800; }
+      .tooth-num { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #F8FAFC; text-anchor: middle; }
+      .tooth-type { font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 600; fill: #94A3B8; text-anchor: middle; }
+      .tooth-box { stroke-width: 1.5; rx: 4; cursor: pointer; transition: all 0.2s; }
+      .tooth-box:hover { opacity: 0.85; stroke-width: 2.2; }
+      .q1-box { fill: #0C4A6E; stroke: #38BDF8; }
+      .q2-box { fill: #064E3B; stroke: #34D399; }
+      .q3-box { fill: #78350F; stroke: #FBBF24; }
+      .q4-box { fill: #4C1D95; stroke: #A78BFA; }
+      .milk-box { fill: #1E293B; stroke: #64748B; rx: 3; }
+    </style>
+  </defs>
+
+  <!-- Dark-Slate Container -->
+  <rect width="100%" height="100%" fill="#0B1120" rx="12"/>
+  <rect x="10" y="10" width="780" height="680" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" rx="10"/>
+
+  <!-- Titel -->
+  <text x="400" y="42" text-anchor="middle" class="fdi-main-title">Das 2-Ziffern-FDI-Zahnschema</text>
+  <text x="400" y="64" text-anchor="middle" class="fdi-sub-title">1. Ziffer = Quadrant (1–4) | 2. Ziffer = Zahnposition von der Mitte nach distal (1–8)</text>
+
+  <!-- Kreuzachsen (Medianlinie & Kauebene) -->
+  <!-- Horizontale Kauebene -->
+  <line x1="40" y1="260" x2="760" y2="260" stroke="#334155" stroke-width="3" stroke-dasharray="6,4"/>
+  <!-- Vertikale Medianlinie -->
+  <line x1="400" y1="85" x2="400" y2="455" stroke="#38BDF8" stroke-width="2.5"/>
+
+  <!-- Orientierungsbeschriftungen (Achtung Patientensicht!) -->
+  <rect x="30" y="80" width="175" height="26" fill="#1E293B" stroke="#38BDF8" stroke-width="1" rx="4"/>
+  <text x="117" y="97" text-anchor="middle" class="axis-label">RECHTS (Dextra / Patient)</text>
+
+  <rect x="595" y="80" width="175" height="26" fill="#1E293B" stroke="#34D399" stroke-width="1" rx="4"/>
+  <text x="682" y="97" text-anchor="middle" class="axis-label" fill="#34D399">LINKS (Sinistra / Patient)</text>
+
+  <text x="400" y="80" text-anchor="middle" font-family="system-ui" font-size="11px" font-weight="700" fill="#38BDF8">MEDIANLINIE (Mitte)</text>
+  <text x="750" y="254" text-anchor="end" font-family="system-ui" font-size="11px" font-weight="700" fill="#94A3B8">KAUEBENE (Okklusion)</text>
+
+  <!-- Quadranten-Labels -->
+  <!-- Q1 -->
+  <g id="hotspot-q1">
+    <rect x="50" y="120" width="330" height="30" fill="#082F49" stroke="#0284C7" stroke-width="1" rx="4"/>
+    <text x="60" y="140" fill="#38BDF8" class="quad-badge">Quadrant 1: Oberkiefer rechts (11 – 18)</text>
+  </g>
+  <!-- Q2 -->
+  <g id="hotspot-q2">
+    <rect x="420" y="120" width="330" height="30" fill="#022C22" stroke="#059669" stroke-width="1" rx="4"/>
+    <text x="430" y="140" fill="#34D399" class="quad-badge">Quadrant 2: Oberkiefer links (21 – 28)</text>
+  </g>
+  <!-- Q4 -->
+  <g id="hotspot-q4">
+    <rect x="50" y="275" width="330" height="30" fill="#2E1065" stroke="#7C3AED" stroke-width="1" rx="4"/>
+    <text x="60" y="295" fill="#A78BFA" class="quad-badge">Quadrant 4: Unterkiefer rechts (41 – 48)</text>
+  </g>
+  <!-- Q3 -->
+  <g id="hotspot-q3">
+    <rect x="420" y="275" width="330" height="30" fill="#451A03" stroke="#D97706" stroke-width="1" rx="4"/>
+    <text x="430" y="295" fill="#FBBF24" class="quad-badge">Quadrant 3: Unterkiefer links (31 – 38)</text>
+  </g>
+
+  <!-- Zähne Q1 (Oberkiefer Rechts: 18 bis 11 von links nach rechts zur Mitte) -->
+  <g id="teeth-q1">
+    <!-- 18 -->
+    <rect x="50" y="160" width="36" height="55" class="tooth-box q1-box"/>
+    <text x="68" y="188" class="tooth-num">18</text><text x="68" y="204" class="tooth-type">M3</text>
+    <!-- 17 -->
+    <rect x="92" y="160" width="36" height="55" class="tooth-box q1-box"/>
+    <text x="110" y="188" class="tooth-num">17</text><text x="110" y="204" class="tooth-type">M2</text>
+    <!-- 16 -->
+    <rect x="134" y="160" width="38" height="55" class="tooth-box q1-box"/>
+    <text x="153" y="188" class="tooth-num">16</text><text x="153" y="204" class="tooth-type">M1</text>
+    <!-- 15 -->
+    <rect x="178" y="160" width="34" height="55" class="tooth-box q1-box"/>
+    <text x="195" y="188" class="tooth-num">15</text><text x="195" y="204" class="tooth-type">P2</text>
+    <!-- 14 -->
+    <rect x="218" y="160" width="34" height="55" class="tooth-box q1-box"/>
+    <text x="235" y="188" class="tooth-num">14</text><text x="235" y="204" class="tooth-type">P1</text>
+    <!-- 13 -->
+    <rect x="258" y="160" width="36" height="55" class="tooth-box q1-box"/>
+    <text x="276" y="188" class="tooth-num">13</text><text x="276" y="204" class="tooth-type">C</text>
+    <!-- 12 -->
+    <rect x="300" y="160" width="36" height="55" class="tooth-box q1-box"/>
+    <text x="318" y="188" class="tooth-num">12</text><text x="318" y="204" class="tooth-type">I2</text>
+    <!-- 11 -->
+    <rect x="342" y="160" width="38" height="55" class="tooth-box q1-box"/>
+    <text x="361" y="188" class="tooth-num">11</text><text x="361" y="204" class="tooth-type">I1</text>
+  </g>
+
+  <!-- Zähne Q2 (Oberkiefer Links: 21 bis 28 von der Mitte nach links) -->
+  <g id="teeth-q2">
+    <!-- 21 -->
+    <rect x="420" y="160" width="38" height="55" class="tooth-box q2-box"/>
+    <text x="439" y="188" class="tooth-num">21</text><text x="439" y="204" class="tooth-type">I1</text>
+    <!-- 22 -->
+    <rect x="464" y="160" width="36" height="55" class="tooth-box q2-box"/>
+    <text x="482" y="188" class="tooth-num">22</text><text x="482" y="204" class="tooth-type">I2</text>
+    <!-- 23 -->
+    <rect x="506" y="160" width="36" height="55" class="tooth-box q2-box"/>
+    <text x="524" y="188" class="tooth-num">23</text><text x="524" y="204" class="tooth-type">C</text>
+    <!-- 24 -->
+    <rect x="548" y="160" width="34" height="55" class="tooth-box q2-box"/>
+    <text x="565" y="188" class="tooth-num">24</text><text x="565" y="204" class="tooth-type">P1</text>
+    <!-- 25 -->
+    <rect x="588" y="160" width="34" height="55" class="tooth-box q2-box"/>
+    <text x="605" y="188" class="tooth-num">25</text><text x="605" y="204" class="tooth-type">P2</text>
+    <!-- 26 -->
+    <rect x="628" y="160" width="38" height="55" class="tooth-box q2-box"/>
+    <text x="647" y="188" class="tooth-num">26</text><text x="647" y="204" class="tooth-type">M1</text>
+    <!-- 27 -->
+    <rect x="672" y="160" width="36" height="55" class="tooth-box q2-box"/>
+    <text x="690" y="188" class="tooth-num">27</text><text x="690" y="204" class="tooth-type">M2</text>
+    <!-- 28 -->
+    <rect x="714" y="160" width="36" height="55" class="tooth-box q2-box"/>
+    <text x="732" y="188" class="tooth-num">28</text><text x="732" y="204" class="tooth-type">M3</text>
+  </g>
+
+  <!-- Zähne Q4 (Unterkiefer Rechts: 48 bis 41) -->
+  <g id="teeth-q4">
+    <rect x="50" y="315" width="36" height="55" class="tooth-box q4-box"/>
+    <text x="68" y="343" class="tooth-num">48</text><text x="68" y="359" class="tooth-type">M3</text>
+    <rect x="92" y="315" width="36" height="55" class="tooth-box q4-box"/>
+    <text x="110" y="343" class="tooth-num">47</text><text x="110" y="359" class="tooth-type">M2</text>
+    <rect x="134" y="315" width="38" height="55" class="tooth-box q4-box"/>
+    <text x="153" y="343" class="tooth-num">46</text><text x="153" y="359" class="tooth-type">M1</text>
+    <rect x="178" y="315" width="34" height="55" class="tooth-box q4-box"/>
+    <text x="195" y="343" class="tooth-num">45</text><text x="195" y="359" class="tooth-type">P2</text>
+    <rect x="218" y="315" width="34" height="55" class="tooth-box q4-box"/>
+    <text x="235" y="343" class="tooth-num">44</text><text x="235" y="359" class="tooth-type">P1</text>
+    <rect x="258" y="315" width="36" height="55" class="tooth-box q4-box"/>
+    <text x="276" y="343" class="tooth-num">43</text><text x="276" y="359" class="tooth-type">C</text>
+    <rect x="300" y="315" width="36" height="55" class="tooth-box q4-box"/>
+    <text x="318" y="343" class="tooth-num">42</text><text x="318" y="359" class="tooth-type">I2</text>
+    <rect x="342" y="315" width="38" height="55" class="tooth-box q4-box"/>
+    <text x="361" y="343" class="tooth-num">41</text><text x="361" y="359" class="tooth-type">I1</text>
+  </g>
+
+  <!-- Zähne Q3 (Unterkiefer Links: 31 bis 38) -->
+  <g id="teeth-q3">
+    <rect x="420" y="315" width="38" height="55" class="tooth-box q3-box"/>
+    <text x="439" y="343" class="tooth-num">31</text><text x="439" y="359" class="tooth-type">I1</text>
+    <rect x="464" y="315" width="36" height="55" class="tooth-box q3-box"/>
+    <text x="482" y="343" class="tooth-num">32</text><text x="482" y="359" class="tooth-type">I2</text>
+    <rect x="506" y="315" width="36" height="55" class="tooth-box q3-box"/>
+    <text x="524" y="343" class="tooth-num">33</text><text x="524" y="359" class="tooth-type">C</text>
+    <rect x="548" y="315" width="34" height="55" class="tooth-box q3-box"/>
+    <text x="565" y="343" class="tooth-num">34</text><text x="565" y="359" class="tooth-type">P1</text>
+    <rect x="588" y="315" width="34" height="55" class="tooth-box q3-box"/>
+    <text x="605" y="343" class="tooth-num">35</text><text x="605" y="359" class="tooth-type">P2</text>
+    <rect x="628" y="315" width="38" height="55" class="tooth-box q3-box"/>
+    <text x="647" y="343" class="tooth-num">36</text><text x="647" y="359" class="tooth-type">M1</text>
+    <rect x="672" y="315" width="36" height="55" class="tooth-box q3-box"/>
+    <text x="690" y="343" class="tooth-num">37</text><text x="690" y="359" class="tooth-type">M2</text>
+    <rect x="714" y="315" width="36" height="55" class="tooth-box q3-box"/>
+    <text x="732" y="343" class="tooth-num">38</text><text x="732" y="359" class="tooth-type">M3</text>
+  </g>
+
+  <!-- Milchgebiss-Übersicht (Dentes decidui: Quadranten 5, 6, 7, 8) -->
+  <g id="hotspot-deciduous" transform="translate(50, 400)">
+    <rect width="700" height="125" fill="#0F172A" stroke="#334155" stroke-width="1.5" rx="8"/>
+    <text x="20" y="25" font-family="system-ui" font-size="13px" font-weight="700" fill="#FBBF24">Milchgebiss (20 Zähne: Quadranten 5, 6, 7, 8)</text>
+    <text x="20" y="42" font-family="system-ui" font-size="11px" fill="#94A3B8">Keine Prämolaren im Milchgebiss! Nach den Eckzähnen (03) folgen direkt Milchmolaren (04, 05).</text>
+    
+    <!-- Q5 & Q6 (OK) -->
+    <g transform="translate(20, 52)">
+      <text x="165" y="16" font-family="system-ui" font-size="11px" font-weight="600" fill="#38BDF8">OK Rechts (Q5): 55 54 53 52 51</text>
+      <text x="345" y="16" font-family="system-ui" font-size="11px" font-weight="700" fill="#475569">|</text>
+      <text x="365" y="16" font-family="system-ui" font-size="11px" font-weight="600" fill="#34D399">OK Links (Q6): 61 62 63 64 65</text>
+    </g>
+    <!-- Q8 & Q7 (UK) -->
+    <g transform="translate(20, 80)">
+      <text x="165" y="16" font-family="system-ui" font-size="11px" font-weight="600" fill="#A78BFA">UK Rechts (Q8): 85 84 83 82 81</text>
+      <text x="345" y="16" font-family="system-ui" font-size="11px" font-weight="700" fill="#475569">|</text>
+      <text x="365" y="16" font-family="system-ui" font-size="11px" font-weight="600" fill="#FBBF24">UK Links (Q7): 71 72 73 74 75</text>
+    </g>
+  </g>
+
+  <!-- Richtungsbegriffe im Zahnbogen (Didaktische Leiste unten) -->
+  <g id="hotspot-directions" transform="translate(50, 545)">
+    <rect width="700" height="125" fill="#1E293B" stroke="#334155" stroke-width="1.5" rx="8"/>
+    <text x="20" y="24" font-family="system-ui" font-size="13px" font-weight="700" fill="#38BDF8">Wichtige Richtungs- &amp; Lagebezeichnungen am Zahn (Prüfungswissen)</text>
+    
+    <text x="20" y="50" font-family="system-ui" font-size="12px" fill="#F1F5F9"><tspan font-weight="700" fill="#34D399">• Mesial:</tspan> Zur Zahnbogenmitte hin gewandt (Gegenteil: <tspan font-weight="700" fill="#FBBF24">Distal</tspan> = nach hinten / von der Mitte weg)</text>
+    <text x="20" y="72" font-family="system-ui" font-size="12px" fill="#F1F5F9"><tspan font-weight="700" fill="#34D399">• Vestibulär:</tspan> Zum Mundvorhof (Lippen/Wangen) | <tspan font-weight="700" fill="#38BDF8">Labial</tspan> = zur Lippe (Front) | <tspan font-weight="700" fill="#38BDF8">Bukkal</tspan> = zur Wange (Seite)</text>
+    <text x="20" y="94" font-family="system-ui" font-size="12px" fill="#F1F5F9"><tspan font-weight="700" fill="#34D399">• Oral:</tspan> Zur Mundhöhle hin | <tspan font-weight="700" fill="#A78BFA">Palatinal</tspan> = zum Gaumen (OK) | <tspan font-weight="700" fill="#A78BFA">Lingual</tspan> = zur Zunge (UK)</text>
+    <text x="20" y="114" font-family="system-ui" font-size="12px" fill="#F1F5F9"><tspan font-weight="700" fill="#34D399">• Okklusal / Inzisal:</tspan> Auf der Kaufläche (Seitenzähne) bzw. an der Schneidekante (Frontzähne)</text>
+  </g>
+</svg>
