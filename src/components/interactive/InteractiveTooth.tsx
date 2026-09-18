@@ -303,9 +303,9 @@ export function InteractiveTooth({
           </div>
 
           {/* Eckiges SVG-Zahnschema */}
-          <svg className="max-w-full h-auto touch-manipulation"
+          <svg
             viewBox="0 0 320 320"
-            className="w-full max-w-full box-border overflow-x-hidden h-full max-w-[280px] max-h-[280px] drop-shadow-xl select-none"
+            className="max-w-full h-auto touch-manipulation w-full box-border overflow-x-hidden max-w-[280px] max-h-[280px] drop-shadow-xl select-none"
             role="region"
             aria-label="Eckiges 5-Flächen-Zahndiagramm"
           >
