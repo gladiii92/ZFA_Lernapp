@@ -1,122 +1,149 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Shield, Sparkles, HeartPulse, Anchor } from 'lucide-react';
+import { sounds } from '@/lib/sound';
 
-export function ToothSubstancesDiagram() {
+export function ToothSubstancesDiagram({ onSelect }: { onSelect?: (id: string) => void }) {
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(0);
+
   const substances = [
     {
+      id: 'enamel',
       nameDe: 'Zahnschmelz',
       nameFr: 'Émail dentaire',
       latin: 'Enamelum',
       icon: Shield,
       mineral: '96 %',
       mineralPercent: 96,
-      badgeColor: 'bg-sky-100 text-sky-800 border-sky-200',
-      barColor: 'bg-sky-500',
-      descDe: 'Härtestes Gewebe des Körpers. Kann sich nach Zerstörung NICHT mehr selbst erneuern (keine lebenden Zellen).',
-      descFr: 'Tissu le plus dur du corps humain. Ne peut PAS se régénérer après destruction (acellulaire).',
+      badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
+      barColor: 'bg-gradient-to-r from-sky-400 to-sky-300',
+      descDe: 'Härtestes Gewebe des menschlichen Körpers (reines Hydroxylapatit). Besitzt keine lebenden Zellen und kann sich nach Kariesbefall nicht selbst erneuern.',
+      descFr: 'Tissu le plus dur de l’organisme humain (~96 % de matière minérale). Acellulaire, il ne peut pas se régénérer après destruction.',
     },
     {
+      id: 'dentin',
       nameDe: 'Dentin (Zahnbein)',
       nameFr: 'Dentine',
       latin: 'Dentinum',
       icon: Sparkles,
       mineral: '70 %',
       mineralPercent: 70,
-      badgeColor: 'bg-amber-100 text-amber-800 border-amber-200',
-      barColor: 'bg-amber-500',
-      descDe: 'Elastischer Stoßdämpfer unter dem Schmelz. Kann zeitlebens Sekundärdentin bilden.',
-      descFr: 'Amortisseur élastique sous l’émail. Peut fabriquer de la dentine secondaire tout au long de la vie.',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+      barColor: 'bg-gradient-to-r from-amber-400 to-amber-300',
+      descDe: 'Elastischer Stoßdämpfer und Hauptmasse des Zahnes. Odontoblasten können zeitlebens Reiz- und Sekundärdentin bilden.',
+      descFr: 'Amortisseur élastique et volume principal de la dent. Les odontoblastes peuvent produire de la dentine réactionnelle tout au long de la vie.',
     },
     {
+      id: 'cementum',
       nameDe: 'Wurzelzement',
       nameFr: 'Cément radiculaire',
       latin: 'Cementum',
       icon: Anchor,
       mineral: '65 %',
       mineralPercent: 65,
-      badgeColor: 'bg-orange-100 text-orange-800 border-orange-200',
-      barColor: 'bg-orange-500',
-      descDe: 'Bedeckt die Wurzel. Ähnelt Knochengewebe und verankert die Haltefasern des Zahnes.',
-      descFr: 'Recouvre la racine. Structure semblable à l’os, ancre les fibres parodontales.',
+      badgeColor: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+      barColor: 'bg-gradient-to-r from-orange-500 to-orange-400',
+      descDe: 'Bedeckt die Wurzeloberfläche. Ähnelt Knochengewebe und verankert die kollagenen Sharpey-Fasern des Zahnhalteapparates.',
+      descFr: 'Recouvre la racine dentaire. Structure proche de l’os, ancre les fibres conjonctives de soutien parodontales.',
     },
     {
+      id: 'pulp',
       nameDe: 'Zahnpulpa (Weichgewebe)',
-      nameFr: 'Pulpe (tissu mou)',
+      nameFr: 'Pulpe dentaire (tissu mou)',
       latin: 'Pulpa dentis',
       icon: HeartPulse,
       mineral: '0 %',
       mineralPercent: 0,
-      badgeColor: 'bg-rose-100 text-rose-800 border-rose-200',
-      barColor: 'bg-rose-500',
-      descDe: 'Das "Herz" des Zahnes: Nerven, Blut- und Lymphgefäße versorgen den Zahn mit Nährstoffen.',
-      descFr: 'Le "cœur" vivant de la dent : nerfs, vaisseaux sanguins et lymphatiques pour la nutrition.',
+      badgeColor: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
+      barColor: 'bg-gradient-to-r from-rose-500 to-rose-400',
+      descDe: 'Das vitale Zentrum des Zahnes: Nervenfasern, Arterien, Venen und Lymphgefäße versorgen den Zahn mit Nährstoffen und sensorischer Reizleitung.',
+      descFr: 'Le cœur vital de la dent : fibres nerveuses, artérioles et capillaires assurant l’alimentation biologique et la sensibilité.',
     },
   ];
 
+  const handleSelect = (idx: number) => {
+    sounds.playClick();
+    setSelectedIdx(idx === selectedIdx ? null : idx);
+    onSelect?.(substances[idx].id);
+  };
+
   return (
-    <div className="w-full bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-3">
-      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+    <div className="w-full bg-slate-900/95 border border-slate-800 rounded-3xl p-4 sm:p-5 shadow-xl select-none space-y-3.5">
+      {/* Header */}
+      <div className="flex items-center justify-between pb-2.5 border-b border-slate-800">
         <div>
-          <h3 className="font-bold text-slate-900 text-sm">
-            Zahnhartsubstanzen vs. Weichgewebe
+          <h3 className="font-black text-slate-100 text-sm sm:text-base">
+            Zahnhartsubstanzen vs. Pulpa
           </h3>
-          <p className="text-xs text-indigo-700 font-medium">
-            Tissus durs vs. Tissu mou de la dent
+          <p className="text-xs text-sky-400 font-semibold mt-0.5">
+            Degré de minéralisation (DE / FR / Latein)
           </p>
         </div>
-        <span className="text-[11px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded-full border border-emerald-200">
-          ZFA Basiswissen
+        <span className="text-[11px] bg-emerald-500/15 text-emerald-300 font-bold px-2.5 py-1 rounded-full border border-emerald-500/30">
+          Mineralgehalt
         </span>
       </div>
 
-      <div className="grid grid-cols-1 gap-3">
+      <p className="text-xs text-slate-400 leading-relaxed">
+        Tippe auf ein Gewebe, um den Mineralisationsgrad und die zahnärztliche Bedeutung zu vergleichen:
+      </p>
+
+      {/* Gewebe-Liste mit interaktivem Fortschrittsbalken */}
+      <div className="grid grid-cols-1 gap-2.5">
         {substances.map((sub, i) => {
           const Icon = sub.icon;
+          const isSelected = selectedIdx === i;
+
           return (
             <div
-              key={i}
-              className="p-3 rounded-xl border border-slate-200/80 bg-slate-50/70 hover:bg-slate-50 transition-all"
+              key={sub.id}
+              onClick={() => handleSelect(i)}
+              className={`p-3.5 rounded-2xl border transition-all cursor-pointer active:scale-[0.99] ${
+                isSelected
+                  ? 'bg-slate-800/90 border-sky-400 shadow-md shadow-sky-500/10 ring-1 ring-sky-400/40'
+                  : 'bg-slate-800/50 border-slate-700/60 hover:bg-slate-800/70 hover:border-slate-600'
+              }`}
             >
               <div className="flex items-start justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <div className="p-1.5 rounded-lg bg-white shadow-xs border border-slate-200">
-                    <Icon className="w-4 h-4 text-slate-700" />
+                <div className="flex items-center gap-2.5">
+                  <div className={`p-2 rounded-xl border ${isSelected ? 'bg-sky-500/20 border-sky-500/40 text-sky-300' : 'bg-slate-900 border-slate-700 text-slate-300'}`}>
+                    <Icon className="w-4 h-4" />
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="font-bold text-slate-900 text-sm">
+                      <span className="font-extrabold text-slate-100 text-sm">
                         {sub.nameDe}
                       </span>
-                      <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.2 rounded font-mono font-semibold">
+                      <span className="text-[10px] bg-slate-900 border border-slate-700 text-sky-400 px-1.5 py-0.5 rounded font-mono font-bold">
                         {sub.latin}
                       </span>
                     </div>
-                    <span className="text-xs font-semibold text-indigo-700 block">
+                    <span className="text-xs font-semibold text-sky-400 block mt-0.5">
                       FR: {sub.nameFr}
                     </span>
                   </div>
                 </div>
 
-                <div className="text-right flex-shrink-0">
-                  <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sub.badgeColor}`}>
-                    {sub.mineral} Mineral
+                <div className="text-right shrink-0">
+                  <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${sub.badgeColor}`}>
+                    {sub.mineral}
                   </span>
                 </div>
               </div>
 
-              {/* Progress Mineral Bar */}
-              <div className="w-full bg-slate-200 h-2 rounded-full mt-2.5 overflow-hidden">
+              {/* Mineralisations-Balken */}
+              <div className="w-full bg-slate-950 h-2 rounded-full mt-3 overflow-hidden border border-slate-800">
                 <div
                   className={`h-full rounded-full transition-all duration-700 ${sub.barColor}`}
                   style={{ width: `${Math.max(sub.mineralPercent, 4)}%` }}
                 />
               </div>
 
-              <div className="mt-2 text-[11px] space-y-0.5 pt-1.5 border-t border-slate-200/60">
-                <p className="text-slate-800 font-medium">🇩🇪 {sub.descDe}</p>
-                <p className="text-indigo-900/80 italic">🇫🇷 {sub.descFr}</p>
+              {/* Detailerklärung (bei Auswahl aufgeklappt oder sichtbar) */}
+              <div className="mt-2.5 text-xs space-y-1 pt-2 border-t border-slate-700/60">
+                <p className="text-slate-200 font-medium leading-relaxed">🇩🇪 {sub.descDe}</p>
+                <p className="text-sky-300/90 italic leading-relaxed">🇫🇷 {sub.descFr}</p>
               </div>
             </div>
           );
@@ -125,4 +152,3 @@ export function ToothSubstancesDiagram() {
     </div>
   );
 }
-

@@ -2,16 +2,28 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Flame, Zap, Volume2, VolumeX, RotateCcw, BookOpen, AlertTriangle } from 'lucide-react';
+import { Flame, Zap, Volume2, VolumeX, RotateCcw, BookOpen, AlertTriangle, Languages } from 'lucide-react';
 import { useProgress } from '@/context/ProgressContext';
+import { sounds } from '@/lib/sound';
 
 export function Header() {
-  const { progress, toggleSound, resetProgress } = useProgress();
+  const { progress, toggleSound, setLanguageMode, resetProgress } = useProgress();
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   const handleConfirmReset = () => {
     resetProgress();
     setShowResetConfirm(false);
+  };
+
+  const handleToggleLanguage = () => {
+    const current = progress.languageMode || 'bilingual';
+    if (current === 'bilingual') {
+      setLanguageMode('de');
+    } else if (current === 'de') {
+      setLanguageMode('fr');
+    } else {
+      setLanguageMode('bilingual');
+    }
   };
 
   // Barrierefreies Schließen des Modals via ESC-Taste
@@ -28,37 +40,53 @@ export function Header() {
     }
   }, [showResetConfirm, handleKeyDown]);
 
+  const langMode = progress.languageMode || 'bilingual';
+
   return (
-    <header className="sticky top-0 z-40 bg-[#0f172a]/95 backdrop-blur-md border-b border-slate-800 px-4 py-2.5 transition-colors">
+    <header className="sticky top-0 z-40 bg-[#0f172a]/95 backdrop-blur-md border-b border-slate-800 px-3.5 py-2.5 transition-colors select-none">
       <div className="flex items-center justify-between max-w-md mx-auto">
         {/* Logo / App Title mit Touch-Feedback */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 group rounded-2xl p-1 -ml-1 focus-visible:ring-2 focus-visible:ring-sky-400 outline-none"
+          className="flex items-center gap-2 group rounded-2xl p-1 -ml-1 focus-visible:ring-2 focus-visible:ring-sky-400 outline-none"
           aria-label="Zurück zur Startseite der ZFA Lernapp"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-base shadow-md shadow-emerald-950/40 group-hover:scale-105 active:scale-95 transition-transform">
+          <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-base shadow-md shadow-emerald-950/40 group-hover:scale-105 active:scale-95 transition-transform">
             🦷
           </div>
           <div className="flex flex-col">
             <span className="font-extrabold text-slate-100 text-sm tracking-tight block leading-none group-hover:text-sky-300 transition-colors">
               ZFA Lernapp
             </span>
-            <span className="text-[10px] font-semibold text-sky-400 block leading-tight mt-0.5">
-              App d&apos;apprentissage
+            <span className="text-[10px] font-bold text-sky-400 block leading-tight mt-0.5">
+              DE • FR • Latein
             </span>
           </div>
         </Link>
 
         {/* Gamification Stats & Quick Actions */}
         <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Sprachumschalter */}
+          <button
+            type="button"
+            onClick={handleToggleLanguage}
+            className="min-h-[38px] px-2 rounded-xl bg-slate-800/90 border border-slate-700/80 text-xs font-black text-slate-200 hover:text-sky-300 hover:border-sky-500/50 active:scale-95 transition-all flex items-center gap-1"
+            title={`Sprachmodus: ${langMode === 'bilingual' ? 'Zweisprachig (DE + FR)' : langMode.toUpperCase()}. Tippen zum Umschalten.`}
+            aria-label="Sprachmodus wechseln"
+          >
+            <Languages className="w-3.5 h-3.5 text-sky-400" />
+            <span className="font-mono text-[11px]">
+              {langMode === 'bilingual' ? 'DE+FR' : langMode.toUpperCase()}
+            </span>
+          </button>
+
           {/* Streak Counter */}
           <div
             className="flex items-center gap-1 bg-amber-500/10 border border-amber-500/25 px-2.5 py-1.5 rounded-xl text-amber-300 text-xs font-black shadow-xs"
             title="Tages-Serie / Série quotidienne"
             aria-label={`${progress.streakDays} Tage Serie`}
           >
-            <Flame className="w-4 h-4 fill-amber-400 text-amber-400" />
+            <Flame className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             <span>{progress.streakDays}</span>
           </div>
 
@@ -68,25 +96,15 @@ export function Header() {
             title="Gesammelte Erfahrungspunkte / Points XP"
             aria-label={`${progress.totalXp} Erfahrungspunkte`}
           >
-            <Zap className="w-4 h-4 fill-sky-400 text-sky-400" />
+            <Zap className="w-3.5 h-3.5 fill-sky-400 text-sky-400" />
             <span>{progress.totalXp}</span>
           </div>
 
-          {/* Fachwörterbuch Shortcut (Touch-Target min. 44x44px) */}
-          <Link
-            href="/glossary"
-            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-xl flex items-center justify-center text-slate-300 hover:text-sky-300 hover:bg-slate-800/80 active:scale-95 transition-all border border-slate-800/80 focus-visible:ring-2 focus-visible:ring-sky-400 outline-none"
-            title="Fachwörterbuch / Dictionnaire médical"
-            aria-label="ZFA-Fachwörterbuch öffnen"
-          >
-            <BookOpen className="w-4 h-4" />
-          </Link>
-
-          {/* Sound Toggle (Touch-Target min. 44x44px) */}
+          {/* Sound Toggle */}
           <button
             type="button"
             onClick={toggleSound}
-            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-xl flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:bg-slate-800/80 active:scale-95 transition-all border border-slate-800/80 focus-visible:ring-2 focus-visible:ring-sky-400 outline-none"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-xl flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:bg-slate-800 active:scale-95 transition-all border border-slate-800/80 focus-visible:ring-2 focus-visible:ring-sky-400 outline-none"
             title={progress.soundEnabled ? 'Ton stumm schalten / Désactiver le son' : 'Ton aktivieren / Activer le son'}
             aria-label={progress.soundEnabled ? 'Ton ausschalten' : 'Ton einschalten'}
           >
@@ -101,7 +119,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setShowResetConfirm(true)}
-            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-xl flex items-center justify-center text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 active:scale-95 transition-all border border-slate-800/80 focus-visible:ring-2 focus-visible:ring-rose-400 outline-none"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-xl flex items-center justify-center text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 active:scale-95 transition-all border border-slate-800/80 focus-visible:ring-2 focus-visible:ring-rose-400 outline-none"
             title="Fortschritt zurücksetzen / Réinitialiser"
             aria-label="Fortschritt zurücksetzen"
           >
@@ -147,14 +165,14 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setShowResetConfirm(false)}
-                className="flex-1 text-xs font-bold py-3 px-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 active:scale-95 transition-all focus-visible:ring-2 focus-visible:ring-sky-400 outline-none min-h-[44px]"
+                className="flex-1 text-xs font-bold py-3 px-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 active:scale-95 transition-all min-h-[44px]"
               >
                 Abbrechen
               </button>
               <button
                 type="button"
                 onClick={handleConfirmReset}
-                className="flex-1 text-xs font-bold py-3 px-3 rounded-xl bg-rose-600 text-white hover:bg-rose-500 active:scale-95 transition-all shadow-md shadow-rose-950/40 focus-visible:ring-2 focus-visible:ring-rose-400 outline-none min-h-[44px]"
+                className="flex-1 text-xs font-bold py-3 px-3 rounded-xl bg-rose-600 text-white hover:bg-rose-500 active:scale-95 transition-all shadow-md shadow-rose-950/40 min-h-[44px]"
               >
                 Zurücksetzen
               </button>

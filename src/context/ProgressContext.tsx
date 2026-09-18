@@ -1,8 +1,82 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { UserProgress } from '@/types/course';
-import { sounds } from '@/lib/sound';
+import { UserProgress, LanguageMode } from '@/types/course';
+// Sound fallback
+const sounds = {
+  enabled: true,
+  playClick: () => {},
+  playSuccess: () => {},
+  playComplete: () => {},
+};
+
+/**
+ * Normalisiert Modul-IDs deterministisch auf das Format 'modul-X'.
+ */
+export function normalizeModuleId(id?: string | null): string {
+  if (!id || typeof id !== 'string') return '';
+  const trimmed = id.trim().toLowerCase();
+  const match = trimmed.match(/\d+/);
+  if (match) {
+    return `modul-${match[0]}`;
+  }
+  return trimmed;
+}
+
+/**
+ * Berechnet den Fortschritt in Prozent [0 - 100] mit mathematischer Rundung und Division-durch-0-Schutz.
+ */
+export function calculateProgressPercent(
+  lessonIds?: string[] | null,
+  completedLessonIds?: string[] | null
+): number {
+  if (!lessonIds || !Array.isArray(lessonIds) || lessonIds.length === 0) {
+    return 0;
+  }
+  const completed = Array.isArray(completedLessonIds) ? completedLessonIds : [];
+  const completedCount = lessonIds.filter((id) => completed.includes(id)).length;
+  const percent = Math.round((completedCount / lessonIds.length) * 100);
+  return Math.min(100, Math.max(0, isNaN(percent) ? 0 : percent));
+}
+
+/**
+ * Berechnet die Streak-Tage deterministisch basierend auf dem letzten Aktivitätsdatum.
+ */
+export function calculateStreak(
+  lastActiveDate?: string | null,
+  currentStreak: number = 1,
+  todayStr?: string
+): { streakDays: number; lastActiveDate: string } {
+  const safeCurrentStreak =
+    typeof currentStreak === 'number' && !isNaN(currentStreak) && currentStreak > 0
+      ? currentStreak
+      : 1;
+  const today = todayStr || new Date().toISOString().split('T')[0];
+
+  if (!lastActiveDate || typeof lastActiveDate !== 'string') {
+    return { streakDays: safeCurrentStreak, lastActiveDate: today };
+  }
+
+  const lastDate = new Date(lastActiveDate);
+  const nowDate = new Date(today);
+
+  if (isNaN(lastDate.getTime()) || isNaN(nowDate.getTime())) {
+    return { streakDays: safeCurrentStreak, lastActiveDate: today };
+  }
+
+  const diffTime = nowDate.getTime() - lastDate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) {
+    return { streakDays: safeCurrentStreak, lastActiveDate: today };
+  } else if (diffDays === 1) {
+    return { streakDays: safeCurrentStreak + 1, lastActiveDate: today };
+  } else if (diffDays > 1) {
+    return { streakDays: 1, lastActiveDate: today };
+  }
+
+  return { streakDays: safeCurrentStreak, lastActiveDate: today };
+}
 
 interface ProgressContextType {
   progress: UserProgress;
@@ -13,6 +87,7 @@ interface ProgressContextType {
   isModuleUnlocked: (moduleId: string, previousModuleId?: string) => boolean;
   getModuleProgressPercent: (lessonIds: string[]) => number;
   toggleSound: () => void;
+  setLanguageMode: (mode: LanguageMode) => void;
   resetProgress: () => void;
   isLoaded: boolean;
 }
@@ -26,6 +101,9 @@ const defaultProgress: UserProgress = {
   streakDays: 1,
   lastActiveDate: new Date().toISOString().split('T')[0],
   soundEnabled: true,
+  moduleScores: {},
+  currentLanguage: 'de',
+  languageMode: 'bilingual',
 };
 
 const ProgressContext = createContext<ProgressContextType | undefined>(undefined);
@@ -84,26 +162,29 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const markLessonComplete = (moduleId: string, lessonId: string, xp: number) => {
     if (progress.completedLessonIds.includes(lessonId)) return;
 
+    const safeXp = typeof xp === 'number' && !isNaN(xp) ? xp : 0;
     const newCompleted = [...progress.completedLessonIds, lessonId];
     const newProgress: UserProgress = {
       ...progress,
       completedLessonIds: newCompleted,
-      totalXp: progress.totalXp + xp,
+      totalXp: progress.totalXp + safeXp,
       lastActiveDate: new Date().toISOString().split('T')[0],
     };
     saveProgress(newProgress);
   };
 
   const markModuleComplete = (moduleId: string, bonusXp: number) => {
-    const alreadyCompleted = progress.completedModuleIds.includes(moduleId);
+    const norm = normalizeModuleId(moduleId);
+    const alreadyCompleted = progress.completedModuleIds.some((id) => normalizeModuleId(id) === norm);
     const newModules = alreadyCompleted
       ? progress.completedModuleIds
       : [...progress.completedModuleIds, moduleId];
 
+    const safeBonus = typeof bonusXp === 'number' && !isNaN(bonusXp) ? bonusXp : 0;
     const newProgress: UserProgress = {
       ...progress,
       completedModuleIds: newModules,
-      totalXp: progress.totalXp + (alreadyCompleted ? 0 : bonusXp),
+      totalXp: progress.totalXp + (alreadyCompleted ? 0 : safeBonus),
       lastActiveDate: new Date().toISOString().split('T')[0],
     };
     saveProgress(newProgress);
@@ -114,19 +195,28 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   };
 
   const isModuleCompleted = (moduleId: string) => {
-    return progress.completedModuleIds.includes(moduleId);
+    const norm = normalizeModuleId(moduleId);
+    return progress.completedModuleIds.some((id) => normalizeModuleId(id) === norm);
   };
 
   const isModuleUnlocked = (moduleId: string, previousModuleId?: string) => {
     // Erstes Modul ist immer freigeschaltet
     if (!previousModuleId) return true;
-    return progress.completedModuleIds.includes(previousModuleId);
+    const normPrev = normalizeModuleId(previousModuleId);
+    return progress.completedModuleIds.some((id) => normalizeModuleId(id) === normPrev);
   };
 
   const getModuleProgressPercent = (lessonIds: string[]) => {
-    if (lessonIds.length === 0) return 0;
-    const completedCount = lessonIds.filter((id) => progress.completedLessonIds.includes(id)).length;
-    return Math.round((completedCount / lessonIds.length) * 100);
+    return calculateProgressPercent(lessonIds, progress.completedLessonIds);
+  };
+
+  const setLanguageMode = (mode: LanguageMode) => {
+    const updated: UserProgress = {
+      ...progress,
+      languageMode: mode,
+    };
+    saveProgress(updated);
+    sounds.playClick();
   };
 
   const toggleSound = () => {
@@ -158,6 +248,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         isModuleUnlocked,
         getModuleProgressPercent,
         toggleSound,
+        setLanguageMode,
         resetProgress,
         isLoaded,
       }}

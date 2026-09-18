@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
+  userScalable: true,
   viewportFit: 'cover',
   themeColor: '#020617',
 };
@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de" className="dark h-full">
-      <body className="bg-[#020617] text-slate-100 min-h-screen min-h-[100dvh] font-sans antialiased selection:bg-sky-500/30 selection:text-sky-200 overflow-x-hidden">
+      <body className="bg-[#020617] text-slate-100 min-h-screen min-h-[100dvh] font-sans antialiased selection:bg-sky-500/30 selection:text-sky-200 overflow-x-hidden overscroll-y-none">
         <ProgressProvider>
           {children}
         </ProgressProvider>

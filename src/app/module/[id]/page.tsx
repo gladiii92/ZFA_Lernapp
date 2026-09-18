@@ -50,5 +50,11 @@ export default function ModulePage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  return <ModuleLessonClient key={currentModule.id} moduleId={currentModule.id} />;
+  return (
+    <div className="module-page-container min-h-screen w-full max-w-full bg-slate-950 text-slate-100 flex flex-col justify-start items-stretch overflow-x-hidden">
+      <main className="module-content-wrapper w-full max-w-5xl mx-auto flex-1 flex flex-col px-2 sm:px-4 md:px-6 py-2.5 sm:py-6 min-w-0 break-words [overflow-wrap:anywhere] overflow-x-hidden box-border">
+        <ModuleLessonClient key={currentModule.id} moduleId={currentModule.id} />
+      </main>
+    </div>
+  );
 }

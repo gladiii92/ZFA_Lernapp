@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { Trophy, Zap, CheckCircle, ArrowRight, RotateCcw } from 'lucide-react';
+import { Zap, CheckCircle2, ArrowRight, RotateCcw } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { sounds } from '@/lib/sound';
 
@@ -22,28 +22,26 @@ export function CompletionModal({
   onRestart,
 }: CompletionModalProps) {
   useEffect(() => {
-    // Play fanfare
     sounds.playFanfare();
 
-    // Fire celebratory confetti cannons!
     try {
       const duration = 2.5 * 1000;
       const end = Date.now() + duration;
 
       const frame = () => {
         confetti({
-          particleCount: 4,
+          particleCount: 5,
           angle: 60,
           spread: 55,
           origin: { x: 0, y: 0.7 },
-          colors: ['#22c55e', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6'],
+          colors: ['#10b981', '#38bdf8', '#fbbf24', '#f43f5e', '#a855f7'],
         });
         confetti({
-          particleCount: 4,
+          particleCount: 5,
           angle: 120,
           spread: 55,
           origin: { x: 1, y: 0.7 },
-          colors: ['#22c55e', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6'],
+          colors: ['#10b981', '#38bdf8', '#fbbf24', '#f43f5e', '#a855f7'],
         });
 
         if (Date.now() < end) {
@@ -57,68 +55,66 @@ export function CompletionModal({
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-pop-in">
-      <div className="bg-white rounded-3xl max-w-sm w-full p-6 text-center border-4 border-emerald-400 shadow-2xl relative overflow-hidden">
-        {/* Glow behind trophy */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-emerald-100 rounded-full blur-2xl -z-10 opacity-70" />
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
+      <div className="bg-[#0f172a] rounded-3xl max-w-sm w-full p-6 text-center border border-slate-700/80 shadow-2xl relative overflow-hidden text-slate-100 animate-pop-in">
+        {/* Glow-Effekte */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-36 h-36 bg-sky-500/20 rounded-full blur-2xl -z-10 pointer-events-none" />
 
-        {/* Big Trophy Icon */}
-        <div className="w-20 h-20 mx-auto rounded-3xl bg-amber-400 border-4 border-amber-500 shadow-lg flex items-center justify-center text-4xl mb-4 animate-bounce-short">
+        {/* Trophäen-Icon */}
+        <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-amber-400 to-amber-500 border-4 border-amber-600 shadow-xl shadow-amber-950/40 flex items-center justify-center text-4xl mb-4 animate-bounce-short">
           🏆
         </div>
 
-        <h2 className="text-xl font-black text-slate-900 leading-tight">
+        <h2 className="text-xl font-black text-slate-100 leading-tight">
           Modul gemeistert!
         </h2>
-        <p className="text-sm font-bold text-indigo-700 mt-0.5">
+        <p className="text-sm font-bold text-sky-400 mt-0.5">
           Module terminé avec succès !
         </p>
 
-        <p className="text-xs text-slate-500 mt-2 font-medium">
+        <p className="text-xs text-slate-400 mt-2 font-medium">
           {moduleTitleDe} • <span className="italic">{moduleTitleFr}</span>
         </p>
 
-        {/* Stats card */}
+        {/* Belohnungs-Karten */}
         <div className="my-5 grid grid-cols-2 gap-2.5">
-          <div className="bg-sky-50 border border-sky-200 rounded-2xl p-3 flex flex-col items-center">
-            <Zap className="w-6 h-6 text-sky-500 fill-sky-400 mb-1" />
-            <span className="text-xl font-black text-sky-900">+{xpEarned}</span>
-            <span className="text-[10px] uppercase font-bold text-sky-600">XP erhalten</span>
+          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3 flex flex-col items-center">
+            <Zap className="w-6 h-6 text-amber-400 fill-amber-400 mb-1" />
+            <span className="text-xl font-black text-amber-300">+{xpEarned}</span>
+            <span className="text-[10px] uppercase font-bold text-slate-400">XP erhalten</span>
           </div>
 
-          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3 flex flex-col items-center">
-            <CheckCircle className="w-6 h-6 text-emerald-500 mb-1" />
-            <span className="text-xl font-black text-emerald-900">100 %</span>
-            <span className="text-[10px] uppercase font-bold text-emerald-600">Geschafft</span>
+          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3 flex flex-col items-center">
+            <CheckCircle2 className="w-6 h-6 text-emerald-400 mb-1" />
+            <span className="text-xl font-black text-emerald-300">100 %</span>
+            <span className="text-[10px] uppercase font-bold text-slate-400">Geschafft</span>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           <Button
             variant="primary"
             size="lg"
             fullWidth
             onClick={onFinish}
-            className="text-base"
+            className="min-h-[48px] text-base"
           >
-            <span>Zur Roadmap / Continuer</span>
+            <span>Zur Roadmap • Continuer</span>
             <ArrowRight className="w-5 h-5 ml-1.5 inline" />
           </Button>
 
-          <Button
-            variant="ghost"
-            size="sm"
-            fullWidth
+          <button
+            type="button"
             onClick={onRestart}
-            className="text-xs text-slate-500"
+            className="w-full min-h-[44px] py-2 text-xs font-bold text-slate-400 hover:text-white rounded-xl bg-slate-900/60 border border-slate-800 hover:bg-slate-800 transition-all flex items-center justify-center gap-1.5"
           >
-            <RotateCcw className="w-3.5 h-3.5 mr-1 inline" />
-            Modul wiederholen / Répéter
-          </Button>
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Modul wiederholen • Répéter</span>
+          </button>
         </div>
       </div>
     </div>
   );
 }
-

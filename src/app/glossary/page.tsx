@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { MobileContainer } from '@/components/layout/MobileContainer';
+import { BottomNav } from '@/components/layout/BottomNav';
 import { courseData } from '@/data/courseData';
 import { ArrowLeft, Search, BookOpen, Volume2, Sparkles } from 'lucide-react';
 import { VocabItem } from '@/types/course';
@@ -18,13 +19,13 @@ export default function GlossaryPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  // Extract all vocabulary items from courseData
+  // Alle Vokabeln dynamisch aus courseData aggregieren
   const allEntries: GlossaryEntry[] = useMemo(() => {
     const list: GlossaryEntry[] = [];
 
     courseData.modules.forEach((mod) => {
       mod.lessons.forEach((lesson) => {
-        if (lesson.type === 'vocabulary') {
+        if (lesson.type === 'vocabulary' && lesson.vocab) {
           lesson.vocab.forEach((v) => {
             list.push({
               ...v,
@@ -40,14 +41,17 @@ export default function GlossaryPage() {
     return list;
   }, []);
 
-  const categories = [
-    { id: 'all', nameDe: 'Alle', nameFr: 'Tous' },
-    { id: 'modul-1', nameDe: 'Zahnaufbau', nameFr: 'Structure' },
-    { id: 'modul-2', nameDe: 'Hartsubstanzen', nameFr: 'Tissus' },
-    { id: 'modul-3', nameDe: 'Zahnarten', nameFr: 'Types' },
-    { id: 'modul-4', nameDe: 'FDI-Schema', nameFr: 'Schéma FDI' },
-    { id: 'modul-5', nameDe: 'Hygiene', nameFr: 'Hygiène' },
-  ];
+  // Kategorien dynamisch aus den Modulen generieren
+  const categories = useMemo(() => {
+    return [
+      { id: 'all', nameDe: 'Alle', nameFr: 'Tous' },
+      ...courseData.modules.map((mod) => ({
+        id: mod.id,
+        nameDe: mod.titleDe.split('&')[0].split(':')[0].trim(),
+        nameFr: mod.titleFr.split('&')[0].split(':')[0].trim(),
+      })),
+    ];
+  }, []);
 
   const filteredEntries = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
@@ -60,28 +64,31 @@ export default function GlossaryPage() {
         item.de.toLowerCase().includes(q) ||
         (item.latin && item.latin.toLowerCase().includes(q)) ||
         item.fr.toLowerCase().includes(q) ||
-        (item.noteDe && item.noteDe.toLowerCase().includes(q))
+        (item.noteDe && item.noteDe.toLowerCase().includes(q)) ||
+        (item.noteFr && item.noteFr.toLowerCase().includes(q))
       );
     });
   }, [allEntries, searchQuery, selectedCategory]);
 
   return (
-    <MobileContainer className="bg-slate-50 min-h-screen pb-12">
-      {/* Header */}
-      <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md px-4 py-3 border-b border-slate-200/80 flex items-center justify-between">
+    <MobileContainer className="bg-[#0f172a] min-h-screen pb-20">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-30 bg-[#0f172a]/95 backdrop-blur-md px-4 py-3 border-b border-slate-800 flex items-center justify-between">
         <Link
           href="/"
-          className="p-2 -ml-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors flex items-center gap-1 text-xs font-bold"
+          onClick={() => sounds.playClick()}
+          className="p-2 -ml-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-1.5 text-xs font-bold active:scale-95"
+          aria-label="Zurück zur Startseite"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Roadmap</span>
         </Link>
 
         <div className="text-center">
-          <h1 className="text-sm font-black text-slate-900 leading-tight">
+          <h1 className="text-sm font-black text-slate-100 leading-tight">
             ZFA Fachwörterbuch
           </h1>
-          <span className="text-[10px] font-semibold text-indigo-600 block">
+          <span className="text-[10px] font-semibold text-sky-400 block">
             Dictionnaire médical (DE / Latein / FR)
           </span>
         </div>
@@ -89,42 +96,45 @@ export default function GlossaryPage() {
         <div className="w-8" />
       </div>
 
-      <div className="p-4 space-y-3">
-        {/* Search Bar */}
+      <div className="p-4 space-y-3.5">
+        {/* Suchfeld */}
         <div className="relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Begriff suchen / Chercher un mot..."
-            className="w-full bg-white border border-slate-200 rounded-2xl pl-10 pr-4 py-3 text-xs sm:text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 shadow-xs"
+            placeholder="Begriff suchen • Chercher un terme..."
+            className="w-full bg-slate-900 border border-slate-700/80 rounded-2xl pl-10 pr-10 py-3 text-xs sm:text-sm font-medium text-slate-100 placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 shadow-md transition-all"
           />
           {searchQuery && (
             <button
+              type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-white p-1"
+              aria-label="Suche leeren"
             >
               ✕
             </button>
           )}
         </div>
 
-        {/* Category Filter Pills */}
+        {/* Kategoriefilter-Pills */}
         <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => {
                   sounds.playClick();
                   setSelectedCategory(cat.id);
                 }}
-                className={`text-xs px-3 py-1.5 rounded-full font-bold whitespace-nowrap transition-all ${
+                className={`min-h-[38px] text-xs px-3.5 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all border active:scale-95 ${
                   isSelected
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-sky-500 text-slate-950 border-sky-400 shadow-md shadow-sky-500/20 font-black'
+                    : 'bg-slate-900 text-slate-300 border-slate-700/70 hover:bg-slate-800 hover:text-white'
                 }`}
               >
                 {cat.nameDe}
@@ -133,67 +143,71 @@ export default function GlossaryPage() {
           })}
         </div>
 
-        {/* Counter */}
-        <div className="text-[11px] font-bold text-slate-400 px-1">
-          {filteredEntries.length} Einträge gefunden / entrées trouvées
+        {/* Zähler & Status */}
+        <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 px-1">
+          <span>{filteredEntries.length} Einträge gefunden</span>
+          <span className="text-sky-400 font-mono">{allEntries.length} Gesamt</span>
         </div>
 
-        {/* Glossary List */}
+        {/* Glossar-Kartenliste */}
         <div className="space-y-2.5">
           {filteredEntries.map((entry, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-xs space-y-2 hover:border-slate-300 transition-all"
+              className="bg-slate-900/95 rounded-2xl p-4 border border-slate-800 shadow-md space-y-2.5 hover:border-slate-700 transition-all animate-fade-in"
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <h3 className="font-black text-slate-900 text-sm sm:text-base">
+                  <h3 className="font-extrabold text-slate-100 text-base leading-snug">
                     {entry.de}
                   </h3>
                   {entry.latin && (
-                    <span className="inline-block mt-0.5 text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
+                    <span className="inline-block mt-0.5 text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/25">
                       {entry.latin}
                     </span>
                   )}
                 </div>
-                <span className="text-[10px] uppercase font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">
-                  {entry.moduleTitleDe}
+                <span className="text-[10px] uppercase font-bold text-slate-400 bg-slate-800 border border-slate-700/60 px-2 py-0.5 rounded-md shrink-0">
+                  {entry.moduleTitleDe.split(' ')[0]}
                 </span>
               </div>
 
-              {/* French translation */}
-              <div className="bg-indigo-50/70 p-2.5 rounded-xl border border-indigo-100/70">
-                <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-wider block">
-                  Französisch / Français
+              {/* Französische Übersetzung */}
+              <div className="bg-sky-500/10 p-3 rounded-xl border border-sky-500/20">
+                <span className="text-[10px] font-bold text-sky-400 uppercase tracking-wider block mb-0.5">
+                  Französisch • Français
                 </span>
-                <p className="text-xs sm:text-sm font-bold text-indigo-950">
+                <p className="text-sm font-extrabold text-sky-100">
                   {entry.fr}
                 </p>
               </div>
 
-              {/* Practice Notes */}
+              {/* Praxisnotizen */}
               {(entry.noteDe || entry.noteFr) && (
-                <div className="text-[11px] text-slate-600 space-y-0.5 pt-1 border-t border-slate-100">
-                  {entry.noteDe && <p className="text-slate-700">📌 {entry.noteDe}</p>}
-                  {entry.noteFr && <p className="italic text-indigo-900/80">🇫🇷 {entry.noteFr}</p>}
+                <div className="text-[11px] text-slate-400 space-y-0.5 pt-1.5 border-t border-slate-800">
+                  {entry.noteDe && <p className="text-slate-300">📌 {entry.noteDe}</p>}
+                  {entry.noteFr && <p className="italic text-sky-400/80">🇫🇷 {entry.noteFr}</p>}
                 </div>
               )}
             </div>
           ))}
 
           {filteredEntries.length === 0 && (
-            <div className="bg-white rounded-2xl p-8 text-center border border-slate-200 space-y-2">
-              <BookOpen className="w-8 h-8 text-slate-300 mx-auto" />
-              <p className="text-xs font-bold text-slate-700">
+            <div className="bg-slate-900 rounded-3xl p-8 text-center border border-slate-800 space-y-2">
+              <BookOpen className="w-8 h-8 text-slate-500 mx-auto" />
+              <p className="text-sm font-bold text-slate-300">
                 Keine passenden Fachbegriffe gefunden.
               </p>
-              <p className="text-[11px] text-slate-400">
-                Aucun terme médical correspondant.
+              <p className="text-xs text-slate-500">
+                Aucun terme médical correspondant à votre recherche.
               </p>
             </div>
           )}
         </div>
       </div>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <BottomNav />
     </MobileContainer>
   );
 }

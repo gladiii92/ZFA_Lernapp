@@ -12,8 +12,8 @@ import { TheoryCard } from '@/components/lesson/TheoryCard';
 import { VocabTable } from '@/components/lesson/VocabTable';
 import { QuizCard } from '@/components/lesson/QuizCard';
 import { MatchingCard } from '@/components/lesson/MatchingCard';
+import { InteractiveGraphicCard } from '@/components/lesson/InteractiveGraphicCard';
 import { CompletionModal } from '@/components/lesson/CompletionModal';
-import { InteractiveDiagram } from '@/components/interactive/InteractiveDiagram';
 import { X, ArrowRight } from 'lucide-react';
 import { sounds } from '@/lib/sound';
 
@@ -36,6 +36,7 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [isQuizAnswered, setIsQuizAnswered] = useState(false);
   const [isMatchingCompleted, setIsMatchingCompleted] = useState(false);
+  const [isGraphicCompleted, setIsGraphicCompleted] = useState(false);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   if (!currentModule) {
@@ -66,6 +67,7 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
       setCurrentLessonIndex((prev) => prev + 1);
       setIsQuizAnswered(false);
       setIsMatchingCompleted(false);
+      setIsGraphicCompleted(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // Gesamtes Modul gemeistert
@@ -78,6 +80,7 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
     setCurrentLessonIndex(0);
     setIsQuizAnswered(false);
     setIsMatchingCompleted(false);
+    setIsGraphicCompleted(false);
     setShowCompletionModal(false);
   };
 
@@ -91,6 +94,10 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
     }
     if (currentLesson.type === 'matching') {
       return isMatchingCompleted;
+    }
+    if (currentLesson.type === 'interactive_graphic' || currentLesson.type === 'interactive-graphic') {
+      // Entweder durch Interaktion gelöst oder bei reinem Erkunden freigegeben
+      return currentLesson.mode === 'explore' || isGraphicCompleted;
     }
     return true;
   };
@@ -126,54 +133,31 @@ export function ModuleLessonClient({ moduleId }: ModuleLessonClientProps) {
         {/* Modul-Orientierungsbanner */}
         <div className="mb-4 flex items-center justify-between rounded-xl bg-slate-900/80 border border-slate-800/90 px-3 py-2">
           <div className="flex items-center gap-2 truncate">
-            <span className="h-2 w-2 rounded-full bg-sky-400 animate-pulse flex-shrink-0" aria-hidden="true" />
+            <span className="h-2 w-2 rounded-full bg-sky-400 animate-pulse shrink-0" aria-hidden="true" />
             <span className="text-xs font-semibold text-slate-300 truncate">
               {currentModule.titleDe}
             </span>
           </div>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20 flex-shrink-0">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20 shrink-0">
             Modul {currentModule.order ?? currentModule.id}
           </span>
         </div>
 
         {/* Dynamische Darstellung je nach Lektionstyp */}
         {currentLesson.type === 'theory' && (
-          <div className="space-y-4">
-            <TheoryCard lesson={currentLesson} />
-
-            {(Boolean(currentLesson.imageKey) || (currentLesson.hotspots && currentLesson.hotspots.length > 0)) && (
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-3 sm:p-4 shadow-xl backdrop-blur overflow-hidden">
-                <div className="mb-2 flex items-center justify-between px-1">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-500/20 px-2.5 py-1 text-xs font-semibold text-sky-400 border border-sky-500/30">
-                    <span aria-hidden="true">🔬</span>
-                    <span>Interaktive Grafik & Hotspots</span>
-                  </span>
-                  <span className="text-[11px] font-medium text-slate-400">
-                    Tippe zum Erkunden
-                  </span>
-                </div>
-
-                <InteractiveDiagram
-                  imageKey={currentLesson.imageKey}
-                  hotspots={currentLesson.hotspots}
-                  title={currentLesson.titleDe}
-                  subtitle={currentLesson.titleFr}
-                />
-
-                <div className="mt-3 flex items-start gap-2 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-amber-200/90 text-xs leading-relaxed">
-                  <span className="text-base select-none leading-none mt-0.5" aria-hidden="true">💡</span>
-                  <div>
-                    <strong className="font-semibold text-amber-300">Erstmal ganz in Ruhe einprägen:</strong>{' '}
-                    Nutze die Hotspots und Schnellwahl-Chips, um die anatomischen Strukturen und Fachbegriffe schrittweise zu verinnerlichen.
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+          <TheoryCard lesson={currentLesson} />
         )}
 
         {currentLesson.type === 'vocabulary' && (
           <VocabTable lesson={currentLesson} />
+        )}
+
+        {(currentLesson.type === 'interactive_graphic' || currentLesson.type === 'interactive-graphic') && (
+          <InteractiveGraphicCard
+            lesson={currentLesson}
+            onComplete={() => setIsGraphicCompleted(true)}
+            isCompleted={isGraphicCompleted}
+          />
         )}
 
         {currentLesson.type === 'quiz' && (
