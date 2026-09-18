@@ -135,7 +135,7 @@ export default function GalleryPage() {
               <span className="truncate">Zentrale Grafik-Galerie • Galerie d&apos;illustrations</span>
             </div>
 
-            <h1 className="text-base sm:text-xl font-black text-slate-100 tracking-tight leading-tight break-words">
+            <h1 className="text-[15px] sm:text-xl font-black text-slate-100 tracking-tight leading-tight break-words hyphens-auto">
               Anatomische Schaubilder &amp; Vektormodelle
             </h1>
             <p className="text-[10.5px] sm:text-xs text-sky-400 font-semibold mt-0.5 break-words">

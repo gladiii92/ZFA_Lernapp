@@ -56,7 +56,7 @@ describe('Course Data & Module Completion Logic', () => {
   it('should ensure hotspot coordinates are within valid normalized bounds [0, 100]', () => {
     courseData.modules.forEach(mod => {
       mod.lessons.forEach(lesson => {
-        if ('hotspots' in lesson && lesson.hotspots) {
+        if (lesson.hotspots) {
           lesson.hotspots.forEach(hs => {
             expect(hs.x).toBeGreaterThanOrEqual(0);
             expect(hs.x).toBeLessThanOrEqual(100);

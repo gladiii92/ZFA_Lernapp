@@ -85,8 +85,20 @@ h4 {
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
+.mt-safe {
+  margin-top: env(safe-area-inset-top, 0px);
+}
+.mb-safe {
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+}
+.top-safe {
+  top: env(safe-area-inset-top, 0px);
+}
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom, 0px);
+}
 
-/* Touch-Targets: Mindestens 44x44px nach WCAG AA */
+/* Touch-Targets: Mindestens 44x44px nach WCAG AA & 2.5.5 / 2.5.8 */
 .touch-target,
 .touch-min {
   min-height: 44px;
@@ -97,13 +109,28 @@ h4 {
 }
 
 button:not(.no-touch-target),
-[role="button"]:not(.no-touch-target) {
+[role="button"]:not(.no-touch-target),
+a[role="button"]:not(.no-touch-target) {
   min-height: 44px;
 }
 
-/* Keine automatische Zoom-Verzerrung auf iOS Safari bei Input-Fokus */
-@media screen and (max-width: 767px) {
-  input,
+/* Interaktive Formularfelder mit nativer Touch-Mindesthöhe (44px) */
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(.no-touch-target),
+select:not(.no-touch-target) {
+  min-height: 44px;
+}
+
+/* Checkboxen & Radios mit barrierefreier Touch-Größe */
+input[type="checkbox"],
+input[type="radio"] {
+  min-width: 20px;
+  min-height: 20px;
+  cursor: pointer;
+}
+
+/* Keine automatische Zoom-Verzerrung auf iOS Safari bei Input-Fokus (Mindestgröße 16px bis einschließlich Tablet) */
+@media screen and (max-width: 1024px) {
+  input:not([type="checkbox"]):not([type="radio"]),
   select,
   textarea {
     font-size: 16px !important;

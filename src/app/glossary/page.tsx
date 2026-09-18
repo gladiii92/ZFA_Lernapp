@@ -71,7 +71,7 @@ export default function GlossaryPage() {
   }, [allEntries, searchQuery, selectedCategory]);
 
   return (
-    <MobileContainer className="bg-[#0f172a] min-h-screen pb-20">
+    <MobileContainer className="bg-[#0f172a] min-h-screen pb-safe pb-24 touch-manipulation">
       {/* Sticky Header */}
       <div className="sticky top-0 z-30 bg-[#0f172a]/95 backdrop-blur-md px-4 py-3 border-b border-slate-800 flex items-center justify-between">
         <Link
@@ -105,13 +105,13 @@ export default function GlossaryPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Begriff suchen • Chercher un terme..."
-            className="w-full bg-slate-900 border border-slate-700/80 rounded-2xl pl-10 pr-10 py-3 text-xs sm:text-sm font-medium text-slate-100 placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 shadow-md transition-all"
+            className="w-full bg-slate-900 border border-slate-700/80 rounded-2xl pl-10 pr-10 py-3 text-base sm:text-sm font-medium text-slate-100 placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 shadow-md transition-all"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-white p-1"
+              className="absolute right-1 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-white p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Suche leeren"
             >
               ✕
@@ -120,7 +120,7 @@ export default function GlossaryPage() {
         </div>
 
         {/* Kategoriefilter-Pills */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+        <div className="flex gap-1.5 overflow-x-auto pb-2 no-scrollbar px-1 -mx-1 snap-x touch-pan-x">
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
@@ -131,7 +131,7 @@ export default function GlossaryPage() {
                   sounds.playClick();
                   setSelectedCategory(cat.id);
                 }}
-                className={`min-h-[38px] text-xs px-3.5 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all border active:scale-95 ${
+                className={`min-h-[44px] text-xs px-3.5 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all border active:scale-95 flex items-center justify-center ${
                   isSelected
                     ? 'bg-sky-500 text-slate-950 border-sky-400 shadow-md shadow-sky-500/20 font-black'
                     : 'bg-slate-900 text-slate-300 border-slate-700/70 hover:bg-slate-800 hover:text-white'
