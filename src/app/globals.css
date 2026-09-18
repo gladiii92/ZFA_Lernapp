@@ -25,7 +25,6 @@ html {
   height: 100%;
   color-scheme: dark;
   scroll-behavior: smooth;
-  overscroll-behavior-y: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -45,8 +44,14 @@ body {
   touch-action: manipulation;
   user-select: none;
   overflow-x: hidden;
-  overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Flüssiges natives Scrolling & Gesten-Containment für alle scrollbaren Container */
+.overflow-y-auto,
+.overflow-auto {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 /* Textauswahl für Lerninhalte und Leseerklärungen freigeben */

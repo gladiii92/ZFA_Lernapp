@@ -27,7 +27,7 @@ export default function HomePage() {
       <Header />
 
       {/* Main Scrollable Content */}
-      <div className="flex-1 px-2 min-[360px]:px-2.5 sm:px-4 py-2 min-[360px]:py-2.5 sm:py-4 space-y-3 sm:space-y-4 pb-28 overflow-y-auto overflow-x-hidden w-full max-w-full box-border">
+      <div className="flex-1 px-2 min-[360px]:px-2.5 sm:px-4 py-2 min-[360px]:py-2.5 sm:py-4 space-y-3 sm:space-y-4 pb-28 overflow-y-auto overflow-x-hidden w-full max-w-full box-border touch-pan-y">
         {/* Welcome Hero Card im Dark-Slate Design */}
         <div className="bg-gradient-to-br from-[#0f172a] via-[#0f172a] to-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-3 sm:p-5 text-white shadow-xl relative overflow-hidden">
           {/* Subtile Akzent-Beleuchtung */}
@@ -71,7 +71,8 @@ export default function HomePage() {
         <Link
           href="/gallery"
           onClick={() => sounds.playClick()}
-          className="block bg-gradient-to-r from-sky-950/40 via-slate-900 to-slate-900 border border-sky-500/30 hover:border-sky-400/60 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shadow-md group active:scale-[0.99] transition-all focus-visible:ring-2 focus-visible:ring-sky-400 outline-none min-h-[44px] w-full"
+          className="block bg-gradient-to-r from-sky-950/40 via-slate-900 to-slate-900 border border-sky-500/30 hover:border-sky-400/60 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shadow-md group active:scale-[0.99] transition-all focus-visible:ring-2 focus-visible:ring-sky-400 outline-none min-h-[44px] w-full touch-pan-y"
+          aria-label="Zu den Grafiken und Schaubildern (Galerie)"
         >
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-sky-500/20 border border-sky-500/40 flex items-center justify-center text-sky-300 shrink-0 group-hover:scale-105 transition-transform">
@@ -80,14 +81,14 @@ export default function HomePage() {
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
                 <span className="text-[11px] sm:text-xs font-black text-slate-100 group-hover:text-sky-300 transition-colors truncate">
-                  Grafik-Galerie &amp; Schaubilder
+                  Grafiken &amp; Schaubilder
                 </span>
                 <span className="text-[9px] sm:text-[10px] bg-sky-500/20 text-sky-300 font-bold px-1.5 py-0.5 rounded-sm shrink-0">
-                  8 Schaubilder • DE / FR
+                  Zentraler Bereich • DE / FR
                 </span>
               </div>
               <p className="text-[9.5px] sm:text-[11px] text-slate-400 truncate mt-0.5">
-                Zahnaufbau, Parodontium, FDI-Schema &amp; Karies D1-D4 separat erklärt
+                Alle Zusatzmaterialien, anatomischen Vektormodelle &amp; Schaubilder übersichtlich an einem Ort
               </p>
             </div>
             <ArrowRight className="w-4 h-4 text-sky-400 group-hover:translate-x-0.5 transition-all shrink-0 ml-1" />
@@ -104,7 +105,7 @@ export default function HomePage() {
         </div>
 
         {/* Roadmap Serpentine Path */}
-        <div className="py-2 flex flex-col items-center w-full max-w-full overflow-hidden">
+        <div className="py-2 flex flex-col items-center w-full max-w-full overflow-hidden touch-pan-y">
           {courseData.modules.map((mod, idx) => {
             const previousModuleId = idx > 0 ? courseData.modules[idx - 1].id : undefined;
             return (

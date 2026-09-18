@@ -32,7 +32,7 @@ export function BottomNav() {
 
       {/* 2. Interaktive Grafiken Shortcut */}
       <Link
-        href="/module/modul-1"
+        href="/gallery"
         onClick={() => sounds.playClick()}
         className="flex flex-col items-center justify-center min-h-[44px] min-w-[64px] rounded-xl text-slate-400 hover:text-emerald-400 transition-all active:scale-90"
       >

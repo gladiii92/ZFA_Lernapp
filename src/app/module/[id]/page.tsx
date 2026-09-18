@@ -51,8 +51,8 @@ export default function ModulePage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="module-page-container min-h-screen w-full max-w-full bg-slate-950 text-slate-100 flex flex-col justify-start items-stretch overflow-x-hidden touch-manipulation">
-      <main className="module-content-wrapper w-full max-w-5xl mx-auto flex-1 flex flex-col px-2 sm:px-4 md:px-6 pt-2 sm:pt-6 pb-24 sm:pb-12 pb-safe min-w-0 break-words [overflow-wrap:anywhere] overflow-x-hidden box-border relative">
+    <div className="module-page-container min-h-screen w-full max-w-full bg-slate-950 text-slate-100 flex flex-col justify-start items-stretch overflow-x-hidden touch-pan-y">
+      <main className="module-content-wrapper w-full max-w-5xl mx-auto flex-1 flex flex-col px-2 sm:px-4 md:px-6 pt-2 sm:pt-6 pb-24 sm:pb-12 pb-safe min-w-0 break-words [overflow-wrap:anywhere] overflow-x-hidden box-border relative touch-pan-y">
         <ModuleLessonClient key={currentModule.id} moduleId={currentModule.id} />
       </main>
     </div>

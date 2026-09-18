@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { Header } from '@/components/layout/Header';
 import { BottomNav } from '@/components/layout/BottomNav';
+import { VisualDiagramResolver } from '@/components/visual/VisualDiagramResolver';
 import {
   ArrowLeft,
   Compass,
@@ -146,6 +147,28 @@ export default function GalleryPage() {
               Alle Grafiken der Lernstraße an einem zentralen Ort zusammengefasst. Nutze die interaktiven Hotspots, Eselsbrücken und Umschalter für deine optimale Prüfungsvorbereitung!
             </p>
           </div>
+        </div>
+
+        {/* Integration der Schaubilder via VisualDiagramResolver */}
+        <div className="flex flex-col space-y-6 mt-6">
+          <section className="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-4">
+            <h2 className="text-lg font-bold text-slate-100 mb-3 flex items-center gap-2">
+              <Layers className="w-5 h-5 text-sky-400" />
+              Anatomie des Zahnes & Parodontium
+            </h2>
+            <div className="space-y-4">
+              <VisualDiagramResolver imageKey="tooth-anatomy" />
+              <VisualDiagramResolver imageKey="periodontium" />
+            </div>
+          </section>
+          
+          <section className="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-4">
+            <h2 className="text-lg font-bold text-slate-100 mb-3 flex items-center gap-2">
+              <Compass className="w-5 h-5 text-emerald-400" />
+              FDI-Zahnschema & Zahnflächen
+            </h2>
+            <VisualDiagramResolver imageKey="fdi-scheme" />
+          </section>
         </div>
 
         {/* Suchfeld & Sprachfilter */}

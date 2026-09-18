@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Flame, Zap, Volume2, VolumeX, RotateCcw, BookOpen, AlertTriangle, Languages } from 'lucide-react';
+import { Flame, Zap, Volume2, VolumeX, RotateCcw, Compass, AlertTriangle, Languages } from 'lucide-react';
 import { useProgress } from '@/context/ProgressContext';
 import { sounds } from '@/lib/sound';
 
